@@ -1,0 +1,115 @@
+<template>
+  <div
+    class="dashboard"
+    :style="{
+      width: $store.state.showMenu === true ? '100%' : 'calc(100% - 181px)',
+    }"
+  >
+    <iframe :src="iframeUrl" frameborder="0" ref="iframes" id="iFrame"></iframe>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      iframeUrl: "",
+      tableList: [
+        {
+          table: "CherryWorld",
+          iframeUrl:
+            "https://prod-apnortheast-a.online.tableau.com/t/svafruits/views/Conection/CherryWorld?:embed=y&:showAppBanner=false&:display_count=n&:showVizHome=n&:origin=viz_share_link",
+        },
+        {
+          table: "ActualSelling",
+          iframeUrl:
+            "https://prod-apnortheast-a.online.tableau.com/t/svafruits/views/CherryBest/ActualSelling?:embed=y&:showAppBanner=false&:display_count=n&:showVizHome=n&:origin=viz_share_link",
+        },
+
+        {
+          table: "Comparatives",
+          iframeUrl:
+            "https://prod-apnortheast-a.online.tableau.com/t/svafruits/views/CherryBest/Comparatives?:embed=y&:showAppBanner=false&:display_count=n&:showVizHome=n&:origin=viz_share_link",
+        },
+
+        {
+          table: "BRAND",
+          iframeUrl:
+            "https://prod-apnortheast-a.online.tableau.com/t/svafruits/views/Cherry_Prices_1_1/M_PricesBRAND?:embed=y&:showAppBanner=false&:display_count=n&:showVizHome=n&:origin=viz_share_link",
+        },
+
+        {
+          table: "VARIETY",
+          iframeUrl:
+            "https://prod-apnortheast-a.online.tableau.com/t/svafruits/views/Cherry_Prices_1_1/M_PricesVARIETY?:embed=y&:showAppBanner=false&:display_count=n&:showVizHome=n&:origin=viz_share_link",
+        },
+
+        {
+          table: "CITY",
+          iframeUrl:
+            "https://prod-apnortheast-a.online.tableau.com/t/svafruits/views/Cherry_Prices_1_1/M_PricesCITY?:embed=y&:showAppBanner=false&:display_count=n&:showVizHome=n&:origin=viz_share_link",
+        },
+
+        {
+          table: "FOBRETURN",
+          iframeUrl:
+            "https://prod-apnortheast-a.online.tableau.com/t/svafruits/views/Cherry_Prices_1_1/FOBRETURN?:embed=y&:showAppBanner=false&:display_count=n&:showVizHome=n&:origin=viz_share_link",
+        },
+        {
+          table: "QCSummary",
+          iframeUrl:
+            "https://prod-apnortheast-a.online.tableau.com/t/svafruits/views/Cherry_Prices_1_1/QCSummary?:embed=y&:showAppBanner=false&:display_count=n&:showVizHome=n&:origin=viz_share_link",
+        },
+        {
+          table: "BUDGETREAL",
+          iframeUrl:
+            "https://prod-apnortheast-a.online.tableau.com/t/svafruits/views/Cherry_Prices_1_1/BUDGETREAL?:embed=y&:showAppBanner=false&:display_count=n&:showVizHome=n&:origin=viz_share_link",
+        },
+      ],
+    };
+  },
+  mounted() {
+    for (let i = 0; i < this.tableList.length; i++) {
+      if (this.$route.query.table === this.tableList[i].table) {
+        this.iframeUrl = this.tableList[i].iframeUrl;
+
+        break;
+      }
+    }
+  },
+  watch: {
+    $route() {
+      for (let i = 0; i < this.tableList.length; i++) {
+        if (this.$route.query.table === this.tableList[i].table) {
+          this.iframeUrl = this.tableList[i].iframeUrl;
+
+          break;
+        }
+      }
+    },
+  },
+};
+</script>
+
+<style lang="less">
+.dashboard {
+  width: calc(100% - 181px);
+  height: calc(100% - 57px);
+  float: right;
+  background-color: #f1f3f6;
+  padding: 40px;
+  overflow: auto;
+  transition: all 0.5s;
+  background-image: url(../assets/linea_tiempo_fondo-2.jpg);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  iframe {
+    width: 100%;
+    height: 100%;
+  }
+}
+</style>

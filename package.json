@@ -1,0 +1,49 @@
+{
+  "name": "vue_v3d_app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "core-js": "^3.6.5",
+    "echarts": "^5.3.3",
+    "element-ui": "^2.15.8",
+    "html2canvas": "^1.4.1",
+    "i18n": "^0.15.0",
+    "image-conversion": "^2.1.1",
+    "jspdf": "^2.5.1",
+    "moment": "^2.29.4",
+    "monent": "^0.0.2-security",
+    "nprogress": "^0.2.0",
+    "swiper": "^9.1.0",
+    "v-viewer": "^1.6.4",
+    "vue": "^2.6.11",
+    "vue-awesome-swiper": "^3.1.3",
+    "vue-axios": "^3.4.1",
+    "vue-i18n": "^8",
+    "vue-pdf": "^4.3.0",
+    "vue-perfect-scrollbar": "^0.2.1",
+    "vue-router": "^3.2.0",
+    "vue-slick-carousel": "^1.0.6",
+    "vue3-perfect-scrollbar": "^1.6.0",
+    "vuex": "^3.4.0",
+    "xlsx": "^0.16.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-router": "~4.5.0",
+    "@vue/cli-plugin-vuex": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^6.2.2",
+    "less": "^3.0.4",
+    "less-loader": "^5.0.0",
+    "vue-template-compiler": "^2.6.11"
+  }
+}
