@@ -99,10 +99,64 @@ export default {
         }
       }
     },
+    // language: {
+    //   handler(val) {
+
+    //     console.log(val);
+    //     this.$i18n.locale = val;
+
+    //   },
+    //   immediate: true,
+    // },
   },
   computed: {
     navList() {
-      return [
+      console.log(localStorage.getItem("lang"));
+      if(this.language === "en"){
+        return [
+        {
+          title: "Home",
+          goPathName: "Sclem",
+    
+        },
+        {
+          title: "Introduction",
+          goPathName: "Company",
+        },
+        {
+          title: "News",
+          goPathName: "NewsInformation",
+        },
+
+        {
+          title: "Service",
+          goPathName: "TestingStandard",
+        },
+        {
+          title: "Product",
+          goPathName: "Product",
+        },
+
+        {
+          title: "Partners",
+          goPathName: "CooperativePartner",
+        },
+        {
+          title: "Contact Us",
+          goPathName: "Concat",
+        },
+        {
+          title: "SVA Global",
+          goPathName: "Login",
+        },
+        
+        {
+          title: "Product Catalog",
+          goPathName: "ProfessionalTools",
+        },
+      ];
+      }else{
+        return [
         {
           title: "首页",
           goPathName: "Sclem",
@@ -130,6 +184,7 @@ export default {
           title: "新闻资讯",
           goPathName: "NewsInformation",
         },
+
         {
           title: "服务",
           goPathName: "TestingStandard",
@@ -145,7 +200,6 @@ export default {
           title: "产品",
           goPathName: "Product",
         },
-
         {
           title: "合作伙伴",
           goPathName: "CooperativePartner",
@@ -157,6 +211,10 @@ export default {
         {
           title: "盛克盟Global",
           goPathName: "Login",
+        },
+        {
+          title: "专业工具",
+          goPathName: "ProfessionalTools",
         },
         // {
         //   title: "新闻资讯",
@@ -173,6 +231,8 @@ export default {
         //   ],
         // },
       ];
+      }
+    
     },
   },
   created() {
@@ -264,6 +324,7 @@ export default {
       }
       localStorage.setItem("lang", this.language);
       this.$i18n.locale = this.language;
+      this.$eventBus.$emit('changeLanguage', this.language)
     },
   },
 };
@@ -306,7 +367,7 @@ export default {
         flex-wrap: wrap;
         & > li {
           height: 100%;
-          padding: 0 24px;
+          padding: 0 18px;
           font-size: 17px;
           color: #00852a;
           font-family: "Montserrat", sans-serif;
@@ -407,11 +468,10 @@ export default {
 }
 // 媒体查询
 @media (max-width: 1470px) {
-}
-@media (max-width: 1200px) {
   .HomePageNavTop {
     .navTop_homePage {
       height: 73.6px;
+      padding: 0 40px;
       .navTopRight {
         .navSelect {
           & > li {
@@ -426,6 +486,9 @@ export default {
       }
     }
   }
+}
+@media (max-width: 1200px) {
+
   // .HomePageNavTop {
   //   .navTop_homePage {
   //     height: 82px;

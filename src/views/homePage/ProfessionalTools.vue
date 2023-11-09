@@ -6,7 +6,7 @@
         <el-tab-pane v-for="(item, index) in categoryList" :label="item" :name="item" :key="index">
           <div class="newsContainer">
             <ul class="newsCardList">
-              <li @click="goNews(item1.newsId)" v-for="(item1, index1) in newsList" :key="index1">
+              <li @click="goNews(item1.farmToolsId)" v-for="(item1, index1) in newsList" :key="index1">
                 <!-- 插入封面 -->
                 <div class="cover">
                   <img :src="item1.coverImg" alt="" />
@@ -21,17 +21,20 @@
                 </div>
                 <!-- 上传时间和作者信息 -->
                 <div class="newsInfo">
-                  <span>{{ item1.author }}</span>
-                  <span>{{ item1.createdAt }}</span>
+                  <el-tooltip class="item" effect="dark" content="请登录后进行查看" placement="top">
+                    <span style="font-size: 14px;">单价：****元</span>
+                  </el-tooltip>
+
+                  <span> 月销量：{{ item1.monthlySales }}</span>
                 </div>
                 <!-- <div class="newsGo">
-                  <div size="small" class="newsGoButton">
-                    {{ $t("homePage.news.News") }}
-                  </div>
-                  <div class="arrow">
-                    <img src="../../assets/newsInformation/arrow.png" alt="" />
-                  </div>
-                </div> -->
+                    <div size="small" class="newsGoButton">
+                      {{ $t("homePage.news.News") }}
+                    </div>
+                    <div class="arrow">
+                      <img src="../../assets/newsInformation/arrow.png" alt="" />
+                    </div>
+                  </div> -->
               </li>
             </ul>
           </div>
@@ -44,7 +47,7 @@
     </div>
   </div>
 </template>
-
+  
 <script>
 import moment from "moment";
 export default {
@@ -67,16 +70,12 @@ export default {
     // 获取所有新闻类别
     getNewsCategory(firstLoad) {
       this.axios
-        .get(` ${process.env.VUE_APP_URL}/api/news/category/list`)
+        .get(` ${process.env.VUE_APP_URL}/api/farmTools/category/list`)
         .then((res) => {
           this.categoryList = res.data.data;
           if (firstLoad) {
-            if(this.categoryList[0]){
-              this.activeName = this.categoryList[0];
-            }else{
-              this.activeName = this.categoryList[1];
-            }
-  
+            this.activeName = this.categoryList[0];
+            //
           }
           this.getNewsList(this.activeName, this.currentPage, this.entriesNum);
         });
@@ -85,7 +84,7 @@ export default {
     getNewsList(category, page, size) {
       this.axios
         .get(
-          ` ${process.env.VUE_APP_URL}/api/news/category/${category}?page=${page}&size=${size}`
+          ` ${process.env.VUE_APP_URL}/api/farmTools/category/${category}?page=${page}&size=${size}`
         )
         .then((res) => {
           this.totalNum = res.data.data.count;
@@ -97,7 +96,7 @@ export default {
             if (this.newsList[i].coverImg) {
               this.newsList[
                 i
-              ].coverImg = `${process.env.VUE_APP_URL}/api/news/picture/${this.newsList[i].coverImg}`;
+              ].coverImg = `${process.env.VUE_APP_URL}/api/farmTools/picture/${this.newsList[i].coverImg}`;
             }
           }
         });
@@ -111,11 +110,11 @@ export default {
       this.currentPage = 1;
       this.getNewsCategory(false);
     },
-    goNews(newsId) {
+    goNews(farmToolsId) {
       this.$router.push({
-        name: "NewsPage",
+        name: "GoodsPage",
         query: {
-          newsId,
+          farmToolsId,
         },
       });
       window.scrollTo(0, 0);
@@ -123,15 +122,7 @@ export default {
   },
 };
 </script>
-<style scoped>
-.newsTab>>>.el-tabs__item {
-  color: #fff;
-}
-.newsTab>>>.el-tabs__item.is-active {
-  color: #409EFF;
-}
-</style>
-
+  
 <style lang="less" scoped>
 .newsInformation {
   width: 100%;
@@ -160,7 +151,7 @@ export default {
 .newsTab {
   min-height: 400px;
   padding: 10px 12.4% 10px;
-  background: url(../../assets/newsInformation/bg-1.jpg) no-repeat;
+  background: url(../../assets/newsInformation/bg-2.jpg) no-repeat;
   background-size: cover;
   background-attachment: fixed;
   background-position: 100% 100%;
@@ -168,7 +159,6 @@ export default {
   .el-tabs__item {
     font-family: 黑体, SimHei;
     font-weight: bold;
-    color: #fff;
   }
 
   .el-tabs__item.is-active {
@@ -367,3 +357,4 @@ export default {
     }
   }
 }</style>
+  

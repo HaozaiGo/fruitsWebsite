@@ -15,8 +15,8 @@
                 <span>Shanghai</span>
               </div>
               <div class="concatLiRight">
-                <span>奉贤区永南路1688号（辉展水果批发市场）7号楼220室 </span>
-                <span>电话：021-38473057</span>
+                <span>{{$t('homePage.contact.title')}} </span>
+                <span>{{$t('homePage.contact.title1')}}：021-38473057</span>
               </div>
             </li>
             <!-- <li>

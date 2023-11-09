@@ -10,90 +10,17 @@
         <div class="standardCover">
           <!-- 文字说明 -->
           <div class="standardContent">
-            <p>盛克盟检测标准</p>
-            <p>让您吃得安心</p>
+            <h5 style="font-family: 'CL';font-size: 40px;text-align: center;line-height: 65px;">{{ $t('homePage.testingStandard.title') }}</h5>
+            <h1 style="font-family: 'CL';font-size: 66px;text-align: center; font-weight: 700;"> {{ $t('homePage.testingStandard.title1') }}</h1>
           </div>
         </div>
         <!-- <div class="standardCover standardCover2"></div> -->
       </div>
     </div>
-    <div class="service">
-      <div class="serviceBox">
-        <div class="serviceTitle">供应链服务</div>
-        <div class="lineLight"></div>
-        <div class="serviceContent">
-          <ul>
-            <li>
-              <img src="@/assets/standard/serve1.png" alt="" />
-              <div class="serviceText">
-                <h4>产地直送</h4>
-                <p>
-                  盛克盟拥有果园，我们的母公司把水果送到中国（以及全球各地），我们在中国接收然后和总部反馈信息，把最优的品质带给广大消费者
-                </p>
-              </div>
-            </li>
-            <li>
-              <img src="@/assets/standard/serve2.png" alt="" />
-              <div class="serviceText">
-                <h4>优势强项</h4>
-                <p>
-                  客户最关心的是稳定的价格与供应。稳定的价格：由于我们是果园，价格是肯定能100%把控。稳定的供应：由于我们是果园，产品的供应也是100%能把控的。
-                </p>
-              </div>
-            </li>
-            <li>
-              <img src="@/assets/standard/serve3.png" alt="" />
-              <div class="serviceText">
-                <h4>商品规划</h4>
-                <p>
-                  除了自有果园，我们还会和全球的果园保持紧密联系，我们在其他大洲的分公司也会及时给到我们各种信息，帮助我们把最适合的产品在最合适的时机投放到最需要的市场。
-                </p>
-              </div>
-            </li>
-            <li>
-              <img src="@/assets/standard/serve4.png" alt="" />
-              <div class="serviceText">
-                <h4>全球物流</h4>
-                <p>
-                  我们与各大空运航运公司都有多年的紧密的合作，水果到达国内后实现快速清关，然后全程冷链配送到全国各个地区，最大化的保证水果的品质。
-                </p>
-              </div>
-            </li>
-            <li>
-              <img src="@/assets/standard/serve5.png" alt="" />
-              <div class="serviceText">
-                <h4>加工服务</h4>
-                <p>
-                  只需要把产品给盛克盟，我们会根据渠道的实际需求来定制最合适的包装方案，然后严格把控产品的品质，最后再以最优的物流配送送到指定地点。目前在上海以及深圳有专业的全年无休的加工分包中心。
-                </p>
-              </div>
-            </li>
-            <li>
-              <img src="@/assets/standard/serve6.png" alt="" />
-              <div class="serviceText">
-                <h4>配送服务</h4>
-                <p>
-                  我们国内的加工分包中心以及冷链车队，都是全年无休的，可以完美的满足客户的每一个订单。将来随着在全国其他区域增设或者合作加工分包中心，我们将更好的服务客户，供应全国。
-                </p>
-              </div>
-            </li>
-            <li>
-              <img src="@/assets/standard/serve7.png" alt="" />
-              <div class="serviceText">
-                <h4>全球服务</h4>
-                <p>
-                  我们可以在国内采购水果、甚至是包装以及农具，然后送到全球各地合作伙伴（果园）手上，将中国好的产品也带给全球的消费者。
-                </p>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <!-- 企业优势 -->
-    <div class="companyAdvantage">
+     <!-- 企业优势 -->
+     <div class="companyAdvantage">
       <div class="companyAdvantageBox">
-        <div class="companyAdvantageTitle">做更好吃的水果</div>
+        <div class="companyAdvantageTitle">{{ $t('homePage.testingStandard.title3') }}</div>
         <ul class="companyAdvantageListCard">
           <li v-for="item in companyAdvantageData" :key="item.title">
             <dl>
@@ -106,16 +33,8 @@
             </dl>
           </li>
         </ul>
-        <swiper
-          :options="swiperOptionAdvantage"
-          ref="mySwiper"
-          class="swiperAdvantage"
-        >
-          <swiper-slide
-            class="AdvantageSlide"
-            v-for="item in companyAdvantageData"
-            :key="item.title"
-          >
+        <swiper :options="swiperOptionAdvantage" ref="mySwiper" class="swiperAdvantage">
+          <swiper-slide class="AdvantageSlide" v-for="item in companyAdvantageData" :key="item.title">
             <dl>
               <dt class="cardTitle">{{ item.title }}</dt>
               <dt class="cardImgList">
@@ -130,6 +49,82 @@
         </swiper>
       </div>
     </div>
+
+
+    <div class="service">
+      <div class="serviceBox">
+        <div class="serviceTitle">{{ $t('homePage.testingStandard.title2') }}</div>
+        <div class="lineLight"></div>
+        <div class="serviceContent">
+          <ul>
+            <li>
+              <img src="@/assets/standard/s-0.jpg" alt="" />
+              <div class="serviceText">
+                <h4>{{ $t('homePage.testingStandard.adv0') }}</h4>
+                <p>
+                  {{ $t('homePage.testingStandard.adv0_1') }}
+                </p>
+              </div>
+            </li>
+            <li>
+              <img src="@/assets/standard/s-1.jpg" alt="" />
+              <div class="serviceText">
+                <h4>{{ $t('homePage.testingStandard.adv1') }}</h4>
+                <p>
+                  {{ $t('homePage.testingStandard.adv1_1') }}
+                </p>
+              </div>
+            </li>
+            <li>
+              <img src="@/assets/standard/s-2.jpg" alt="" />
+              <div class="serviceText">
+                <h4>{{ $t('homePage.testingStandard.adv2') }}</h4>
+                <p>
+                  {{ $t('homePage.testingStandard.adv2_1') }}
+                </p>
+              </div>
+            </li>
+            <li>
+              <img src="@/assets/standard/s-3.jpg" alt="" />
+              <div class="serviceText">
+                <h4>{{ $t('homePage.testingStandard.adv3') }}</h4>
+                <p>
+                  {{ $t('homePage.testingStandard.adv3_1') }}
+                </p>
+              </div>
+            </li>
+            <li>
+              <img src="@/assets/standard/s-4.jpg" alt="" />
+              <div class="serviceText">
+                <h4>{{ $t('homePage.testingStandard.adv4') }}</h4>
+                <p>
+                  {{ $t('homePage.testingStandard.adv4_1') }}
+                </p>
+              </div>
+            </li>
+            <li>
+              <img src="@/assets/standard/s-5.jpg" alt="" />
+              <div class="serviceText">
+                <h4>{{ $t('homePage.testingStandard.adv5') }}</h4>
+                <p>
+                  {{ $t('homePage.testingStandard.adv5_1') }}
+                </p>
+              </div>
+            </li>
+            <li>
+              <img src="@/assets/standard/serve7.png" alt="" />
+              <div class="serviceText">
+                <h4>{{ $t('homePage.testingStandard.adv6') }}</h4>
+                <p>
+                  {{ $t('homePage.testingStandard.adv6_1') }}
+                </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+   
     <!-- <div class="companyStandard">
       <div class="companyStandardBox">
         <div class="companyStandardTitle">盛克盟检测标准</div>
@@ -382,41 +377,7 @@ export default {
   },
   data() {
     return {
-      companyAdvantageData: [
-        {
-          title: "全球基地",
-          desc: "从源头保障果品品质安全",
-          img: [
-            require("@/assets/homePage/world_color.png"),
-            require("@/assets/homePage/world_nocolor.png"),
-          ],
-        },
-        {
-          title: "科学采摘",
-          desc: "成熟度管理，适时采收确保水果最佳口感风味",
-          img: [
-            require("@/assets/homePage/basket_color.png"),
-            require("@/assets/homePage/basket_nocolor.png"),
-          ],
-        },
-        {
-          title: "冷链保鲜",
-          desc:
-            "从产地到配送到门店销售冷链控制、全面鲜度经营保障水果新鲜、好吃",
-          img: [
-            require("@/assets/homePage/cold_color.png"),
-            require("@/assets/homePage/cold_nocolor.png"),
-          ],
-        },
-        {
-          title: "严格标准",
-          desc: "严格执行五大运营标准体系，确保果品分级标准的落实",
-          img: [
-            require("@/assets/homePage/standard_color.png"),
-            require("@/assets/homePage/standard_nocolor.png"),
-          ],
-        },
-      ],
+      language: localStorage.getItem("lang") || "en",
       swiperOptionAdvantage: {
         slidesPerView: "auto",
         loop: true,
@@ -428,9 +389,95 @@ export default {
           bulletClass: "my-bullet",
           bulletActiveClass: "my-bullet-active",
         },
+       
       },
     };
   },
+  watch:{
+
+  },
+  computed:{
+    companyAdvantageData(){
+      if (this.$i18n.locale === 'en') {
+        return [
+          {
+            title: "Global base",
+            desc: "Ensure fruit quality and safety from the source",
+            img: [
+              require("@/assets/homePage/world_color.png"),
+              require("@/assets/homePage/world_nocolor.png"),
+            ],
+          },
+          {
+            title: "Scientific picking",
+            desc: "Maturity management, timely harvest to ensure the best taste and flavor of fruit",
+            img: [
+              require("@/assets/homePage/basket_color.png"),
+              require("@/assets/homePage/basket_nocolor.png"),
+            ],
+          },
+          {
+            title: "Cold chain",
+            desc:
+              "From origin to distribution to store sales cold chain control, comprehensive freshness management to ensure fresh fruit, delicious",
+            img: [
+              require("@/assets/homePage/cold_color.png"),
+              require("@/assets/homePage/cold_nocolor.png"),
+            ],
+          },
+          {
+            title: "Strict standard",
+            desc: "Strictly implement the five operating standards system to ensureImplementation of fruit grading standards",
+            img: [
+              require("@/assets/homePage/standard_color.png"),
+              require("@/assets/homePage/standard_nocolor.png"),
+            ],
+          },
+        ]
+      } else {
+        return [
+          {
+            title: "全球基地",
+            desc: "从源头保障果品品质安全",
+            img: [
+              require("@/assets/homePage/world_color.png"),
+              require("@/assets/homePage/world_nocolor.png"),
+            ],
+          },
+          {
+            title: "科学采摘",
+            desc: "成熟度管理，适时采收确保水果最佳口感风味",
+            img: [
+              require("@/assets/homePage/basket_color.png"),
+              require("@/assets/homePage/basket_nocolor.png"),
+            ],
+          },
+          {
+            title: "冷链保鲜",
+            desc:
+              "从产地到配送到门店销售冷链控制、全面鲜度经营保障水果新鲜、好吃",
+            img: [
+              require("@/assets/homePage/cold_color.png"),
+              require("@/assets/homePage/cold_nocolor.png"),
+            ],
+          },
+          {
+            title: "严格标准",
+            desc: "严格执行五大运营标准体系，确保果品分级标准的落实",
+            img: [
+              require("@/assets/homePage/standard_color.png"),
+              require("@/assets/homePage/standard_nocolor.png"),
+            ],
+          },
+        ]
+      }
+      
+    },
+  },
+  updated(){
+   
+   
+  }
 };
 </script>
 
@@ -440,17 +487,21 @@ export default {
   overflow: auto;
   padding-top: 76.8px;
   background-color: #fff;
+
   .standard {
     width: 100%;
-    margin-bottom: 80px;
+    // margin-bottom: 80px;
+
     .standardBox {
       width: 100%;
+
       .standardTitle {
         text-align: center;
         color: rgba(0, 0, 0, 1);
         font-size: 40px;
         letter-spacing: 10px;
       }
+
       .lineLight {
         width: 64px;
         height: 8px;
@@ -459,6 +510,7 @@ export default {
         margin-top: 10px;
         margin-bottom: 20px;
       }
+
       .standardCover {
         height: 540px;
         width: 100%;
@@ -468,42 +520,54 @@ export default {
         background-attachment: inherit;
         background-size: cover;
         position: relative;
-        margin-bottom: 90px;
+        // margin-bottom: 90px;
+
         .standardContent {
           text-align: left;
-          color: rgba(255, 255, 255, 1);
+          color: #138719de;
           font-size: 85px;
           font-weight: 700;
           line-height: 1;
+          width: 100%;
           position: absolute;
-          left: 8.33%;
+          // left: 8.33%;
+          
           top: 50%;
-          transform: translateY(-50%);
+          transform: translateY(-75%);
           padding: 0 15px;
+
           p {
             margin: 16px;
+
             &:last-child {
               text-indent: 1em;
             }
           }
         }
       }
+
       .standardCover2 {
         background-image: url(../../assets/standard/standardCover.svg);
       }
     }
   }
+
   .service {
     width: 100%;
     margin-bottom: 80px;
+
     .serviceBox {
       width: 100%;
+
       .serviceTitle {
         text-align: center;
         color: rgba(0, 0, 0, 1);
         font-size: 40px;
-        letter-spacing: 10px;
+        font-weight: 700;
+        margin-top: 50px;
+        font-family: 'CL'
       }
+
       .lineLight {
         width: 64px;
         height: 8px;
@@ -512,6 +576,7 @@ export default {
         margin-top: 10px;
         margin-bottom: 20px;
       }
+
       .serviceContent {
         width: 100%;
         max-width: 1200px;
@@ -519,10 +584,12 @@ export default {
         padding: 20px 0;
         // background-color: #f7f7f7;
         margin-top: 55px;
+
         ul {
           display: flex;
           justify-content: center;
           flex-wrap: wrap;
+
           li {
             // flex: 1;
             width: calc(33.3% - 60px);
@@ -534,22 +601,28 @@ export default {
             // justify-content: center;
             // border-right: 1px solid rgba(230, 230, 230, 1);
             position: relative;
-            padding: 80px 20px 20px;
+            padding: 40px 20px 20px;
             margin-bottom: 60px;
+
             img {
               // position: absolute;
               // top: -110px;
               // z-index: 1;
               // right: 5px;
             }
+
             .serviceText {
+
               // min-height: 180px;
               h4 {
                 margin-bottom: 10px;
                 font-weight: bolder;
                 color: black;
                 font-size: 16px;
+                font-family: 'CL';
+                margin-top: 10px;
               }
+
               p {
                 font-size: 15px;
               }
@@ -559,17 +632,21 @@ export default {
       }
     }
   }
+
   .companyStandard {
     width: 100%;
     margin-bottom: 80px;
+
     .companyStandardBox {
       width: 100%;
+
       .companyStandardTitle {
         text-align: center;
         color: rgba(0, 0, 0, 1);
         font-size: 40px;
         letter-spacing: 10px;
       }
+
       .lineLight {
         width: 64px;
         height: 8px;
@@ -578,6 +655,7 @@ export default {
         margin-top: 10px;
         margin-bottom: 20px;
       }
+
       .companyStandardContent {
         width: 100%;
         max-width: 1200px;
@@ -585,8 +663,10 @@ export default {
         padding: 20px 0;
         background-color: #f7f7f7;
         margin-top: 55px;
+
         ul {
           display: flex;
+
           li {
             flex: 1;
             background-color: #f7f7f7;
@@ -596,9 +676,11 @@ export default {
             align-items: center;
             // justify-content: center;
             border-right: 1px solid rgba(230, 230, 230, 1);
+
             &:last-child {
               border-right: none;
             }
+
             .pacing {
               width: 37px;
               height: 37px;
@@ -612,6 +694,7 @@ export default {
               justify-content: center;
               margin-bottom: 30px;
             }
+
             span {
               color: rgba(63, 32, 22, 1);
               font-size: 20px;
@@ -623,18 +706,22 @@ export default {
       }
     }
   }
+
   .standardDetail {
     width: 100%;
     margin-bottom: 80px;
+
     .standardDetailBox {
       background-color: #f7f7f7;
       padding-top: 60px;
+
       .standardDetailTitle {
         text-align: center;
         color: rgba(0, 0, 0, 1);
         font-size: 40px;
         letter-spacing: 10px;
       }
+
       .lineLight {
         width: 64px;
         height: 8px;
@@ -643,6 +730,7 @@ export default {
         margin-top: 10px;
         margin-bottom: 30px;
       }
+
       .standardDetailContent {
         max-width: 1200px;
         width: 100%;
@@ -650,15 +738,18 @@ export default {
         margin: 0 auto;
         align-items: center;
         padding-bottom: 90px;
+
         .content_left {
           width: 50%;
           //   flex: 1;
           padding: 0 17px;
+
           .content_left_title {
             color: #000;
             text-align: left;
             font-size: 26px;
           }
+
           .lineLight2 {
             width: 64px;
             height: 2px;
@@ -666,6 +757,7 @@ export default {
             margin-top: 30px;
             margin-bottom: 30px;
           }
+
           .content_left_desc {
             text-align: left;
             color: rgba(63, 32, 22, 1);
@@ -674,9 +766,11 @@ export default {
             line-height: 1.8;
           }
         }
+
         .content_right {
           width: 50%;
           padding: 0 17px;
+
           ul {
             li {
               background-color: #fff;
@@ -684,9 +778,11 @@ export default {
               padding: 15px;
               display: flex;
               border-radius: 5px;
+
               .list_left {
                 width: 60%;
                 padding-right: 15px;
+
                 dl {
                   dt {
                     text-align: left;
@@ -694,22 +790,26 @@ export default {
                     font-size: 18px;
                     padding: 5px 0;
                   }
+
                   dd {
                     text-align: left;
                     color: rgba(63, 32, 22, 1);
                     font-size: 14px;
                     margin: 8px 0;
+
                     span {
                       color: #ff9fa9;
                     }
                   }
                 }
               }
+
               .list_right {
                 width: 40%;
                 display: flex;
                 align-items: center;
                 justify-content: center;
+
                 img {
                   width: 100%;
                   height: auto;
@@ -721,17 +821,21 @@ export default {
       }
     }
   }
+
   .developmentCenter {
     width: 100%;
     margin-bottom: 80px;
+
     .developmentCenterBox {
       padding-top: 60px;
+
       .developmentCenterTilte {
         text-align: center;
         color: rgba(0, 0, 0, 1);
         font-size: 40px;
         letter-spacing: 10px;
       }
+
       .lineLight {
         width: 64px;
         height: 8px;
@@ -740,6 +844,7 @@ export default {
         margin-top: 10px;
         margin-bottom: 40px;
       }
+
       .developmentCenterImageText {
         display: flex;
         align-items: center;
@@ -747,10 +852,12 @@ export default {
         max-width: 1200px;
         margin: 0 auto;
         margin-bottom: 120px;
+
         .developmentCenterText {
           width: 50%;
           padding: 0 32px;
           text-align: center;
+
           p {
             text-align: left;
             color: rgba(63, 32, 22, 1);
@@ -758,14 +865,17 @@ export default {
             line-height: 1.8;
             margin-bottom: 15px;
           }
+
           img {
             width: 50%;
             height: auto;
           }
         }
+
         .developmentCenterImage {
           width: 50%;
           padding: 0 32px;
+
           img {
             width: 100%;
             height: auto;
@@ -774,17 +884,21 @@ export default {
       }
     }
   }
+
   .qualityControl {
     width: 100%;
     margin-bottom: 80px;
+
     .qualityControlBox {
       width: 100%;
+
       .qualityControlTitle {
         text-align: center;
         color: rgba(0, 0, 0, 1);
         font-size: 40px;
         letter-spacing: 10px;
       }
+
       .lineLight {
         width: 64px;
         height: 8px;
@@ -793,6 +907,7 @@ export default {
         margin-top: 10px;
         margin-bottom: 40px;
       }
+
       .qualityControlContent {
         background-color: rgba(251, 251, 251, 1);
         padding: 0 15px;
@@ -800,13 +915,16 @@ export default {
         max-width: 1200px;
         margin: 0 auto;
         position: relative;
+
         .qualityControlContentBox {
           padding: 60px;
+
           ul {
             display: flex;
             flex-wrap: wrap;
             z-index: 1;
             position: relative;
+
             li {
               width: 25%;
               display: flex;
@@ -814,20 +932,24 @@ export default {
               align-items: center;
               justify-content: center;
               padding: 10px;
+
               img {
                 width: 77%;
                 height: auto;
               }
+
               span {
                 padding: 5px 0;
                 color: rgba(63, 32, 22, 1);
                 font-size: 16px;
+
                 &:last-child {
                   font-size: 14px;
                 }
               }
             }
           }
+
           .qualityControlContentBG {
             width: 100%;
             height: 100%;
@@ -844,17 +966,21 @@ export default {
       }
     }
   }
+
   .temperatureControl {
     width: 100%;
     margin-bottom: 80px;
+
     .temperatureControlBox {
       width: 100%;
+
       .temperatureControlTitle {
         text-align: center;
         color: rgba(0, 0, 0, 1);
         font-size: 40px;
         letter-spacing: 10px;
       }
+
       .temperatureControlDesc {
         text-align: center;
         color: rgba(64, 33, 23, 1);
@@ -862,15 +988,18 @@ export default {
         padding: 5px 0;
         margin-bottom: 60px;
       }
+
       .temperatureControlContent {
         display: flex;
         align-items: center;
         width: 100%;
         max-width: 1200px;
         margin: 0 auto;
+
         .temperatureControl_left {
           width: 50%;
           padding: 0 15px;
+
           p {
             text-align: left;
             color: rgba(63, 32, 22, 1);
@@ -878,9 +1007,11 @@ export default {
             line-height: 1.8;
           }
         }
+
         .temperatureControl_right {
           width: 50%;
           padding: 0 15px;
+
           ul {
             display: flex;
             flex-wrap: wrap;
@@ -900,24 +1031,29 @@ export default {
       }
     }
   }
+
   // 企业优势
   .companyAdvantage {
     width: 100%;
     background-color: rgba(251, 250, 249, 1);
     padding-bottom: 80px;
     overflow: hidden;
+
     .companyAdvantageBox {
       width: 100%;
       max-width: 1200px;
       margin: 0 auto;
+
       .companyAdvantageTitle {
         padding-top: 80px;
         padding-bottom: 60px;
         text-align: center;
         color: #000;
         font-size: 40px;
-        letter-spacing: 10px;
+        font-weight: 700;
+        font-family: 'CL';
       }
+
       .companyAdvantageListCard {
         display: flex;
         column-gap: 15px;
@@ -930,18 +1066,22 @@ export default {
           transition: all 0.5s;
           text-align: center;
           border-radius: 15px;
+
           &:hover {
             background-color: #41a460;
+
             dt,
             dd {
               color: #fff;
             }
+
             .cardImgList {
               img {
                 top: -100%;
               }
             }
           }
+
           .cardImgList {
             display: flex;
             flex-direction: column;
@@ -949,6 +1089,7 @@ export default {
             // justify-content: center;
             overflow: hidden;
             height: 100px;
+
             img {
               width: 100px;
               height: auto;
@@ -957,22 +1098,28 @@ export default {
               transition: all 0.5s;
             }
           }
+
           dl {
             display: flex;
             flex-direction: column;
+
             .cardTitle {
               padding-top: 15px;
               padding-bottom: 42px;
+              font-family: "CL";
             }
+
             .cardDesc {
               margin-top: 32px;
               margin-bottom: 15px;
             }
+
             dt {
               font-size: 28px;
               font-weight: normal;
               color: #3f2016;
             }
+
             dd {
               font-size: 16px;
               color: #333;
@@ -989,6 +1136,7 @@ export default {
           }
         }
       }
+
       .swiperAdvantage {
         display: none;
       }
@@ -999,27 +1147,34 @@ export default {
 @media (max-width: 1200px) {
   .TestingStandard {
     padding-top: 73.6px;
+
     .standard {
       margin-bottom: 60px;
+
       .standardBox {
         .standardCover {
           margin-bottom: 60px;
+
           .standardContent {
             font-size: 66px;
           }
         }
       }
     }
+
     .service {
       margin-bottom: 60px;
+
       .serviceBox {
         .serviceContent {
           width: 100%;
           max-width: 95%;
+
           ul {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
+
             li {
               // flex: 1;
               width: calc(50% - 60px);
@@ -1033,20 +1188,25 @@ export default {
               position: relative;
               padding: 90px 20px 20px;
               margin-bottom: 60px;
+
               img {
                 position: absolute;
                 top: -110px;
                 z-index: 1;
                 right: 5px;
               }
+
               .serviceText {
+
                 // min-height: 180px;
                 h4 {
                   margin-bottom: 10px;
                   font-weight: bolder;
                   color: black;
                   font-size: 16px;
+                  font-family: 'CL';
                 }
+
                 p {
                   font-size: 15px;
                 }
@@ -1056,8 +1216,10 @@ export default {
         }
       }
     }
+
     .companyStandard {
       margin-bottom: 60px;
+
       .companyStandardBox {
         .companyStandardContent {
           width: 100%;
@@ -1065,8 +1227,10 @@ export default {
         }
       }
     }
+
     .standardDetail {
       margin-bottom: 60px;
+
       .standardDetailBox {
         .standardDetailContent {
           max-width: 95%;
@@ -1074,9 +1238,11 @@ export default {
         }
       }
     }
+
     .developmentCenter {
       width: 100%;
       margin-bottom: 60px;
+
       .developmentCenterBox {
         .developmentCenterImageText {
           width: 100%;
@@ -1084,9 +1250,11 @@ export default {
         }
       }
     }
+
     .qualityControl {
       width: 100%;
       margin-bottom: 60px;
+
       .qualityControlBox {
         width: 100%;
 
@@ -1096,17 +1264,21 @@ export default {
         }
       }
     }
+
     .temperatureControl {
       width: 100%;
       margin-bottom: 60px;
+
       .temperatureControlBox {
         width: 100%;
+
         .temperatureControlTitle {
           text-align: center;
           color: rgba(0, 0, 0, 1);
           font-size: 40px;
           letter-spacing: 10px;
         }
+
         .temperatureControlDesc {
           text-align: center;
           color: rgba(64, 33, 23, 1);
@@ -1114,15 +1286,18 @@ export default {
           padding: 5px 0;
           margin-bottom: 60px;
         }
+
         .temperatureControlContent {
           display: flex;
           align-items: center;
           width: 100%;
           max-width: 95%;
           margin: 0 auto;
+
           .temperatureControl_left {
             width: 50%;
             padding: 0 15px;
+
             p {
               text-align: left;
               color: rgba(63, 32, 22, 1);
@@ -1130,9 +1305,11 @@ export default {
               line-height: 1.8;
             }
           }
+
           .temperatureControl_right {
             width: 50%;
             padding: 0 15px;
+
             ul {
               display: flex;
               flex-wrap: wrap;
@@ -1152,32 +1329,40 @@ export default {
         }
       }
     }
+
     .companyAdvantage {
       padding-bottom: 60px;
+
       .companyAdvantageBox {
         max-width: 95%;
         width: 100%;
+
         .companyAdvantageTitle {
           padding-top: 60px;
           padding-bottom: 50px;
         }
+
         .companyAdvantageListCard {
           column-gap: 10px;
+
           li {
             .cardImgList {
               height: 90px;
+
               img {
                 width: 90px;
               }
             }
+
             dl {
-              .cardTitle {
-              }
-              .cardDesc {
-              }
+              .cardTitle {}
+
+              .cardDesc {}
+
               dt {
                 font-size: 24px;
               }
+
               dd {
                 font-size: 14px;
               }
@@ -1188,20 +1373,25 @@ export default {
     }
   }
 }
+
 @media (max-width: 768px) {
   .TestingStandard {
     padding-top: 55px;
+
     .standard {
       .standardBox {
         .standardTitle {
           font-size: 28px;
         }
+
         .lineLight {
           height: 4px;
         }
+
         .standardCover {
           margin-bottom: 60px;
           height: 360px;
+
           .standardContent {
             font-size: 36px;
             font-weight: normal;
@@ -1211,15 +1401,19 @@ export default {
         }
       }
     }
+
     .service {
       .serviceBox {
         padding: 0 20px;
+
         .serviceTitle {
           font-size: 28px;
         }
+
         .lineLight {
           height: 4px;
         }
+
         .serviceContent {
           width: 100%;
           max-width: 100%;
@@ -1227,11 +1421,13 @@ export default {
           padding: 0px;
           // background-color: #f7f7f7;
           margin-top: 40px;
+
           ul {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
             margin-top: 90px;
+
             li {
               // flex: 1;
               width: 100%;
@@ -1245,21 +1441,27 @@ export default {
               position: relative;
               padding: 0px;
               margin-bottom: 110px;
+
               img {
                 position: absolute;
                 top: -110px;
                 z-index: 1;
                 right: 5px;
               }
+
               .serviceText {
                 // min-height: 180px;
                 padding: 90px 20px 20px;
+
                 h4 {
                   margin-bottom: 10px;
                   font-weight: bolder;
                   color: black;
                   font-size: 16px;
+                  font-family: "CL";
+                 
                 }
+
                 p {
                   font-size: 15px;
                 }
@@ -1269,15 +1471,19 @@ export default {
         }
       }
     }
+
     .companyStandard {
       .companyStandardBox {
         padding: 0 20px;
+
         .companyStandardTitle {
           font-size: 28px;
         }
+
         .lineLight {
           height: 4px;
         }
+
         .companyStandardContent {
           width: 100%;
           max-width: 100%;
@@ -1285,9 +1491,11 @@ export default {
           padding: 0 20px;
           background-color: #f7f7f7;
           margin-top: 40px;
+
           ul {
             display: flex;
             flex-direction: column;
+
             li {
               flex: 1;
               background-color: #f7f7f7;
@@ -1298,10 +1506,12 @@ export default {
               // justify-content: center;
               border-right: none;
               border-bottom: 1px solid rgba(230, 230, 230, 1);
+
               &:last-child {
                 border-right: none;
                 border-bottom: none;
               }
+
               .pacing {
                 width: 37px;
                 height: 37px;
@@ -1315,6 +1525,7 @@ export default {
                 justify-content: center;
                 margin-bottom: 30px;
               }
+
               span {
                 color: rgba(63, 32, 22, 1);
                 font-size: 16px;
@@ -1326,14 +1537,17 @@ export default {
         }
       }
     }
+
     .standardDetail {
       .standardDetailBox {
         .standardDetailTitle {
           font-size: 28px;
         }
+
         .lineLight {
           height: 4px;
         }
+
         .standardDetailContent {
           max-width: 100%;
           width: 100%;
@@ -1341,13 +1555,16 @@ export default {
           flex-direction: column;
           align-items: center;
           padding-bottom: 90px;
+
           .content_left {
             width: 100%;
             padding: 0 32px;
             margin-bottom: 40px;
+
             .content_left_title {
               font-size: 20px;
             }
+
             .lineLight2 {
               width: 64px;
               height: 2px;
@@ -1355,13 +1572,16 @@ export default {
               margin-top: 30px;
               margin-bottom: 30px;
             }
+
             .content_left_desc {
               font-size: 14px;
             }
           }
+
           .content_right {
             width: 100%;
             padding: 0 17px;
+
             ul {
               li {
                 background-color: #fff;
@@ -1370,9 +1590,11 @@ export default {
                 display: flex;
                 flex-direction: column;
                 border-radius: 5px;
+
                 .list_left {
                   width: 100%;
                   padding-right: 15px;
+
                   dl {
                     dt {
                       text-align: left;
@@ -1380,23 +1602,27 @@ export default {
                       font-size: 16px;
                       padding: 5px 0;
                     }
+
                     dd {
                       text-align: left;
                       color: rgba(63, 32, 22, 1);
                       font-size: 13px;
                       margin: 8px 0;
+
                       span {
                         color: #ff9fa9;
                       }
                     }
                   }
                 }
+
                 .list_right {
                   width: 100%;
                   display: flex;
                   align-items: center;
                   justify-content: center;
                   margin-top: 10px;
+
                   img {
                     width: 100%;
                     height: auto;
@@ -1408,14 +1634,17 @@ export default {
         }
       }
     }
+
     .developmentCenter {
       .developmentCenterBox {
         .developmentCenterTilte {
           font-size: 28px;
         }
+
         .lineLight {
           height: 4px;
         }
+
         .developmentCenterImageText {
           display: flex;
           flex-direction: column;
@@ -1424,10 +1653,12 @@ export default {
           max-width: 1200px;
           margin: 0 auto;
           margin-bottom: 120px;
+
           .developmentCenterText {
             width: 100%;
             padding: 0 20px;
             text-align: center;
+
             p {
               text-align: left;
               color: rgba(63, 32, 22, 1);
@@ -1435,16 +1666,19 @@ export default {
               line-height: 1.8;
               margin-bottom: 15px;
             }
+
             img {
               margin-top: 28px;
               width: 80%;
               height: auto;
             }
           }
+
           .developmentCenterImage {
             width: 100%;
             padding: 0 20px;
             margin-top: 46px;
+
             img {
               width: 100%;
               height: auto;
@@ -1453,14 +1687,17 @@ export default {
         }
       }
     }
+
     .qualityControl {
       .qualityControlBox {
         .qualityControlTitle {
           font-size: 28px;
         }
+
         .lineLight {
           height: 4px;
         }
+
         .qualityControlContent {
           background-color: rgba(251, 251, 251, 1);
           padding: 0 15px;
@@ -1468,13 +1705,16 @@ export default {
           max-width: 100%;
           margin: 0 auto;
           position: relative;
+
           .qualityControlContentBox {
             padding: 0px;
+
             ul {
               display: flex;
               flex-wrap: wrap;
               z-index: 1;
               position: relative;
+
               li {
                 width: 50%;
                 display: flex;
@@ -1482,20 +1722,24 @@ export default {
                 align-items: center;
                 justify-content: center;
                 padding: 3px;
+
                 img {
                   width: 83%;
                   height: auto;
                 }
+
                 span {
                   padding: 5px 0;
                   color: rgba(63, 32, 22, 1);
                   font-size: 14px;
+
                   &:last-child {
                     font-size: 12px;
                   }
                 }
               }
             }
+
             .qualityControlContentBG {
               display: none;
             }
@@ -1503,17 +1747,21 @@ export default {
         }
       }
     }
+
     .temperatureControl {
       width: 100%;
       margin-bottom: 60px;
+
       .temperatureControlBox {
         width: 100%;
+
         .temperatureControlTitle {
           text-align: center;
           color: rgba(0, 0, 0, 1);
           font-size: 28px;
           letter-spacing: 10px;
         }
+
         .temperatureControlDesc {
           text-align: center;
           color: rgba(64, 33, 23, 1);
@@ -1521,6 +1769,7 @@ export default {
           padding: 5px 0;
           margin-bottom: 32px;
         }
+
         .temperatureControlContent {
           display: flex;
           flex-direction: column;
@@ -1528,10 +1777,12 @@ export default {
           width: 100%;
           max-width: 100%;
           margin: 0 auto;
+
           .temperatureControl_left {
             width: 100%;
             padding: 0 15px;
             margin-bottom: 38px;
+
             p {
               text-align: left;
               color: rgba(103, 103, 103, 1);
@@ -1539,9 +1790,11 @@ export default {
               line-height: 1.8;
             }
           }
+
           .temperatureControl_right {
             width: 100%;
             padding: 0 15px;
+
             ul {
               display: flex;
               flex-wrap: wrap;
@@ -1561,24 +1814,29 @@ export default {
         }
       }
     }
+
     .companyAdvantage {
       .companyAdvantageBox {
         max-width: 95%;
         width: 100%;
+
         .companyAdvantageTitle {
           padding-top: 60px;
           padding-bottom: 30px;
           font-size: 28px;
           letter-spacing: 6px;
         }
+
         .companyAdvantageListCard {
           display: none;
         }
+
         .swiperAdvantage {
           display: flex;
           column-gap: 0px;
           position: relative;
           padding: 0px;
+
           .AdvantageSlide {
             background-color: #fff;
             padding: 30px 20px;
@@ -1587,12 +1845,14 @@ export default {
             transition: all 0.5s;
             text-align: center;
             border-radius: 15px;
+
             .cardImgList {
               display: flex;
               flex-direction: column;
               align-items: center;
               overflow: hidden;
               height: 70px;
+
               img {
                 width: 70px;
                 height: auto;
@@ -1601,22 +1861,27 @@ export default {
                 transition: all 0.5s;
               }
             }
+
             dl {
               display: flex;
               flex-direction: column;
+
               .cardTitle {
                 padding-top: 15px;
                 padding-bottom: 42px;
               }
+
               .cardDesc {
                 margin-top: 32px;
                 margin-bottom: 0px;
               }
+
               dt {
                 font-size: 19px;
                 font-weight: normal;
                 color: #3f2016;
               }
+
               dd {
                 font-size: 15px;
                 color: #333;
@@ -1632,20 +1897,25 @@ export default {
               }
             }
           }
+
           .swiper-slide-active {
             background-color: #41a460;
+
             dl {
+
               dt,
               dd {
                 color: #fff;
               }
             }
+
             .cardImgList {
               img {
                 top: -100%;
               }
             }
           }
+
           .my-bullet {
             border-radius: 50%;
             width: 10px;
@@ -1654,10 +1924,12 @@ export default {
             display: inline-block;
             background: rgba(0, 0, 0, 0.2);
           }
+
           .my-bullet-active {
             background: #41a460;
             width: 10px;
           }
+
           .swiper-pagination {
             position: absolute;
             z-index: 1;
@@ -1669,5 +1941,4 @@ export default {
       }
     }
   }
-}
-</style>
+}</style>

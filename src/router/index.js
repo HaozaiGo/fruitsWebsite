@@ -99,6 +99,19 @@ const routes = [
     },
   },
   {
+    path:"/goods",
+    name:"Goods",
+    component: ()=>import("../views/goods/Goods.vue"),
+    meta: {
+      headerNav: true,
+      leftNav: true,
+      needToken: true,
+      homePage: false,
+      homePageNavTop: false,
+      showCopyRight: false,
+    },
+  },
+  {
     path: "/",
     name: "Sclem",
     component: () => import("../views/homePage/Home1.vue"),
@@ -246,6 +259,32 @@ const routes = [
     path: "/newsInformation/newsPage",
     name: "NewsPage",
     component: () => import("../views/homePage/NewsPage.vue"),
+    meta: {
+      headerNav: false,
+      leftNav: false,
+      needToken: false,
+      homePage: true,
+      homePageNavTop: true,
+      showCopyRight: true,
+    },
+  },
+  {
+    path: "/goodsInformation/newsPage",
+    name: "GoodsPage",
+    component: () => import("../views/goods/components/NewsPage.vue"),
+    meta: {
+      headerNav: false,
+      leftNav: false,
+      needToken: false,
+      homePage: true,
+      homePageNavTop: true,
+      showCopyRight: true,
+    },
+  },
+  {
+    path: "/ProfessionalTools",
+    name: "ProfessionalTools",
+    component: () => import("../views/homePage/ProfessionalTools.vue"),
     meta: {
       headerNav: false,
       leftNav: false,

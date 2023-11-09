@@ -1,41 +1,46 @@
 <template>
   <div class="addNews">
-    <div class="addNewsHeader">{{ $t("navLeft.AddNews") }}</div>
+    <div class="addNewsHeader">{{ $t("navLeft.AddGoods") }}</div>
     <div class="addNewsForm">
-      <el-form ref="form" :model="form" label-width="100px">
-        <el-form-item :label="$t('news.category')">
-          <el-autocomplete v-model="form.type" :fetch-suggestions="querySearchAsync"
-            :placeholder="$t('news.placeholderCategory')"></el-autocomplete>
+      <el-form ref="form" :model="form" label-width="140px">
+        <el-form-item :label="$t('goods.category')">
+          <el-autocomplete v-model="form.category" :fetch-suggestions="querySearchAsync"
+            :placeholder="$t('goods.placeholderCategory')"></el-autocomplete>
         </el-form-item>
-        <el-form-item :label="$t('news.cover')">
+        <el-form-item :label="$t('goods.cover')">
           <el-upload class="avatar-uploader" action="#" :show-file-list="false" :before-upload="beforeAvatarUpload"
             :http-request="(params) => httpRequestImageCover(params)">
             <img v-if="form.cover" :src="form.cover" class="avatar" />
             <i v-else class="el-icon-plus avatar-uploader-icon"></i>
           </el-upload>
         </el-form-item>
-        <el-form-item :label="$t('news.title')">
-          <el-input v-model="form.title" :placeholder="$t('news.placeholderTitle')" class="articleTitle"></el-input>
-          <el-input v-model="form.translations[0].title" class="articleTitle" :placeholder="$t('news.placeholderTraTips')"
-            style="margin-left: 10px;">
+        <el-form-item :label="$t('goods.title')">
+          <el-input v-model="form.title" :placeholder="$t('goods.placeholderTitle')" class="articleTitle"></el-input>
+        </el-form-item>
+        <el-form-item :label="$t('goods.summary')">
+          <el-input v-model="form.summary" :placeholder="$t('goods.placeholderSummary')" class="articleTitle"></el-input>
+        </el-form-item>
+        <el-form-item :label="$t('goods.belongCompany')">
+          <el-input v-model="form.belongCompany" :placeholder="$t('goods.placeholderBelongCompany')"
+            class="articleTitle"></el-input>
+        </el-form-item>
+        <el-form-item :label="$t('goods.price')">
+          <el-input v-model="form.price" :placeholder="$t('goods.placeholderPrice')" class="articleTitle"
+            type="number"></el-input>
+        </el-form-item>
+        <el-form-item :label="$t('goods.monthlySales')">
+          <el-input v-model="form.monthlySales" :placeholder="$t('goods.placeholderMonthlySales')" class="articleTitle"
+            type="number"></el-input>
+        </el-form-item>
+        <el-form-item :label="$t('goods.transportation')">
+          <el-input v-model="form.logisticsMethod" :placeholder="$t('goods.placeholderTransportation')"
+            class="articleTitle"></el-input>
+        </el-form-item>
 
-          </el-input>
-        </el-form-item>
-        <el-form-item :label="$t('news.summary')">
-          <el-input v-model="form.summary" :placeholder="$t('news.placeholderSummary')" class="articleTitle"></el-input>
-          <el-input v-model="form.translations[0].summary" class="articleTitle"
-            :placeholder="$t('news.placeholderTraTips')" style="margin-left: 10px;" />
-        </el-form-item>
-        <el-form-item :label="$t('news.author')">
-          <el-input v-model="form.author" :placeholder="$t('news.placeholderAuthor')" class="articleTitle"></el-input>
-          <el-input v-model="form.translations[0].author" class="articleTitle"
-            :placeholder="$t('news.placeholderTraTips')" style="margin-left: 10px;" />
-        </el-form-item>
+
         <template v-for="(item, index) in form.article">
           <el-form-item :label="$t('news.paragraph')" :key="index" v-if="item.type === 'text'">
-            <el-input type="textarea" v-model="form.content[index].content" class="articleContent"></el-input>
-            <el-input type="textarea" v-model="form.translations[0].content[index].content" class="articleContent"
-              style="margin-top: 10px;" :placeholder="$t('news.placeholderTraTips')"></el-input>
+            <el-input type="textarea" v-model="form.article[index].content" class="articleContent"></el-input>
             <el-button type="danger" icon="el-icon-delete" circle class="deleteButton"
               @click="deletAddNews(index)"></el-button>
           </el-form-item>
@@ -51,44 +56,47 @@
         </template>
         <div class="newsOptions">
           <el-button-group>
-            <el-tooltip class="item" effect="dark" :content="$t('news.addParagraph')" placement="bottom">
+            <el-tooltip class="item" effect="dark" :content="$t('goods.addParagraph')" placement="bottom">
               <el-button type="primary" @click="addNewsTexture" size="small" class="optionButton"><img
                   src="@/assets/addNews/text.png" alt="" /></el-button>
             </el-tooltip>
-            <el-tooltip class="item" effect="dark" :content="$t('news.addIllustration')" placement="bottom">
+            <el-tooltip class="item" effect="dark" :content="$t('goods.addIllustration')" placement="bottom">
               <el-button type="primary" @click="addNewsImg" size="small" class="optionButton"><img
-                  src="../assets/addNews/image.png" alt="" /></el-button>
+                  src="@/assets/addNews/image.png" alt="" /></el-button>
             </el-tooltip>
-            <el-tooltip class="item" effect="dark" :content="$t('news.PreviewNews')" placement="bottom">
+            <el-tooltip class="item" effect="dark" :content="$t('goods.PreviewNews')" placement="bottom">
               <el-button class="optionButton" size="small" type="primary" @click="previewNews"><img
-                  src="../assets/addNews/preview.png" alt="" /></el-button>
+                  src="@/assets/addNews/preview.png" alt="" /></el-button>
             </el-tooltip>
           </el-button-group>
         </div>
         <div class="newsUp">
           <el-button type="primary" @click="addNews">{{
-            $t("news.newNews")
+            $t("goods.newGoods")
           }}</el-button>
           <el-button type="danger" @click="clearNews">{{
-            $t("news.clear")
+            $t("goods.clear")
           }}</el-button>
         </div>
       </el-form>
     </div>
   </div>
 </template>
-
+  
 <script>
 export default {
   data() {
     return {
       form: {
-        type: "",
+        category: "",
         title: "",
-        author: "",
         summary: "",
-        cover: "",
         coverImg: "",
+        belongCompany: "",
+        price: null,
+        monthlySales: null,
+        logisticsMethod: "",
+        cover: "",
         article: [
           //   {
           //     type: "text",
@@ -101,17 +109,7 @@ export default {
           //   },
         ],
         content: [],
-        translations: [
-          {
-            title: "",
-            author: "",
-            summary: "",
-            content: [],
-            lang: 1
-          }
-        ],//Fanyi
       },
-
       restaurants: [],
       timeout: null,
       imageUrl: "",
@@ -130,7 +128,7 @@ export default {
     // 获取所有类别
     getCategory() {
       this.axios
-        .get(` ${process.env.VUE_APP_URL}/api/news/category/list`)
+        .get(` ${process.env.VUE_APP_URL}/api/farmTools/category/list`)
         .then((res) => {
           this.categoryList = res.data.data;
 
@@ -175,14 +173,6 @@ export default {
         type: "text",
         content: "",
       });
-
-      this.form.translations[0].content.push({
-        content: "",
-        type: "text"
-      })  
-      console.log(this.form.translations);
-
-
       this.fileList.push(false);
     },
     // 新加新图片
@@ -195,17 +185,12 @@ export default {
         type: "image",
         imageName: "",
       });
-      this.form.translations[0].content.push({
-        type: "image",
-        imageName: "",
-      }) 
       this.fileList.push({ file: null });
     },
     // 删除新增片段
     deletAddNews(index) {
       this.form.article.splice(index, 1);
       this.form.content.splice(index, 1);
-      this.form.translations[0].content.splice(index, 1)
       this.fileList.splice(index, 1);
     },
     // 新闻预览
@@ -247,7 +232,6 @@ export default {
       reader.readAsDataURL(params.file);
       reader.onload = function (e) {
         that.form.article[index].imageName = reader.result;
-        that.form.translations[0].content[index].imageName = reader.result;
       };
       if (this.fileList[index].file === null) {
         this.uploadImgNum++;
@@ -265,7 +249,7 @@ export default {
       if (this.coverFile !== null) {
         this.axios
           .post(
-            `${process.env.VUE_APP_URL}/api/news/picture`,
+            `${process.env.VUE_APP_URL}/api/farmTools/picture`,
             {
               picture: this.coverFile,
             },
@@ -288,7 +272,7 @@ export default {
         if (this.fileList[i] !== false && this.fileList[i].file !== null) {
           this.axios
             .post(
-              `${process.env.VUE_APP_URL}/api/news/picture`,
+              `${process.env.VUE_APP_URL}/api/farmTools/picture`,
               {
                 picture: this.fileList[i].file,
               },
@@ -302,35 +286,19 @@ export default {
             .then((res) => {
               //
               index++;
-              this.form.content[i].imageName = res.data.data;
-              this.form.translations[0].content[i].imageName = res.data.data;
-        
+              this.form.article[i].imageName = res.data.data;
               this.checkUploadDown(index);
             });
         }
       }
     },
     uploadNewsObj() {
-      if (this.form.type === '' || !this.form.type) {
-        return this.$message({
-          showClose: true,
-          message: "请填入新闻类型(Please enter the news type)!",
-          type: "warning",
-        });
-      }
-      this.form.translations[0].content = JSON.stringify(this.form.translations[0].content)
       this.axios
         .post(
-          `${process.env.VUE_APP_URL}/api/news`,
-          {
-            title: this.form.title,
-            coverImg: this.form.coverImg,
-            category: this.form.type,
-            author: this.form.author,
-            summary: this.form.summary,
-            content: JSON.stringify(this.form.content),
-            translations:this.form.translations
-          },
+          `${process.env.VUE_APP_URL}/api/farmTools`,
+          Object.assign({}, this.form, {
+            introduction: JSON.stringify(this.form.article),
+          }),
           {
             headers: {
               Authorization: window.sessionStorage.getItem("token"),
@@ -341,38 +309,37 @@ export default {
           // 上传成功
           this.$message({
             showClose: true,
-            message: "新闻添加成功",
+            message: "商品添加成功",
             type: "success",
           });
-        });
 
+          if(res.data.status === 200){
+            this.clearNews()
+          }
+        });
     },
     addNews() {
       this.upLoadNewsImg();
     },
     clearNews() {
       this.form = {
-        type: "",
+        category: "",
         title: "",
-        author: "",
         summary: "",
-        cover: "",
         coverImg: "",
+        belongCompany: "",
+        price: null,
+        monthlySales: null,
+        logisticsMethod: "",
+        cover: "",
         article: [],
         content: [],
-        translations: [{
-          title: "",
-          author: "",
-          summary: "",
-          content: [],
-          lang: 1
-        }],
       };
     },
   },
 };
 </script>
-
+  
 <style lang="less">
 .addNews {
   width: 100%;
@@ -380,8 +347,8 @@ export default {
   min-width: 880px;
   margin-bottom: 28px;
   position: relative;
-  background-image: url(../assets/fondo_marcas4.png),
-    url("../assets/fondo_marcas5.png");
+  background-image: url("../../../assets/fondo_marcas4.png"),
+    url("../../../assets/fondo_marcas5.png");
   background-position: left center, right, center;
   background-size: contain, contain;
   background-repeat: no-repeat, no-repeat;
@@ -487,3 +454,4 @@ export default {
   line-height: 0px;
 }
 </style>
+  

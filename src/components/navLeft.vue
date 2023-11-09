@@ -1,10 +1,7 @@
 <template>
-  <div
-    class="navLeft"
-    :style="{
-      left: $store.state.showMenu === true ? '-181px' : '0px',
-    }"
-  >
+  <div class="navLeft" :style="{
+    left: $store.state.showMenu === true ? '-181px' : '0px',
+  }">
     <div class="userInfo">
       <div class="portrait">
         <img src="../assets/navLeft/user-circle.png" alt="" />
@@ -16,46 +13,26 @@
     </div>
     <ul class="menuList">
       <template v-for="(item, index) in getMenuList">
-        <li
-          :key="index"
-          @click="goPath(index)"
-          :class="selectLi == index && !item.children ? 'activeli' : ''"
-          v-if="item.admin === 'all' || userInfo.role === item.admin"
-        >
+        <li :key="index" @click="goPath(index)" :class="selectLi == index && !item.children ? 'activeli' : ''"
+          v-if="item.admin === 'all' || userInfo.role === item.admin">
           <div class="icon">
             <img :src="item.imgSrc" alt="" />
           </div>
           <span class="menu_name">{{ item.name }} </span>
-          <div
-            class="arrow"
-            :style="{
-              transform:
-                activeChildren === true && selectLi === index
-                  ? 'translateY(-50%) rotate(-135deg)'
-                  : 'translateY(-50%) rotate(-45deg)',
-            }"
-            v-if="item.children"
-          ></div>
+          <div class="arrow" :style="{
+            transform:
+              activeChildren === true && selectLi === index
+                ? 'translateY(-50%) rotate(-135deg)'
+                : 'translateY(-50%) rotate(-45deg)',
+          }" v-if="item.children"></div>
         </li>
-        <div
-          class="childrenMenuListFather"
-          ref="childrenMenuListFather"
-          :key="item.name"
-        >
-          <ul
-            class="childrenMenuList"
-            ref="childrenMenuList"
-            v-show="
-              (item.admin === 'all' || userInfo.role === item.admin) &&
-                item.children
-            "
-          >
+        <div class="childrenMenuListFather" ref="childrenMenuListFather" :key="item.name">
+          <ul class="childrenMenuList" ref="childrenMenuList" v-show="(item.admin === 'all' || userInfo.role === item.admin) &&
+            item.children
+            ">
             <template v-for="(item1, index1) in item.children">
-              <li
-                :key="index1"
-                :class="currentChildren == index1 ? 'activeli1' : ''"
-                @click="goPathChildren(item1.params, index1)"
-              >
+              <li :key="index1" :class="currentChildren == index1 ? 'activeli1' : ''"
+                @click="goPathChildren(item1.params, index1)">
                 <div class="icon">
                   <img :src="item1.imgSrc" alt="" />
                 </div>
@@ -79,6 +56,7 @@ export default {
       currentTable: this.$store.state.childrenTableSelect,
       currentNews: this.$store.state.childrenNewsSelect,
       currentChildren: 0,
+      currentGoods: 0
     };
   },
   computed: {
@@ -184,6 +162,25 @@ export default {
             },
           ],
         },
+        {
+          imgSrc: require("../assets/navLeft/goods.png"),
+          name: this.$t("navLeft.goods"),
+          admin: "ADMIN",
+          children: [
+            {
+              imgSrc: require("../assets/navLeft/managing.png"),
+              name: this.$t("navLeft.AddGoods"),
+              admin: "all",
+              params: "AddGoods",
+            },
+            {
+              imgSrc: require("../assets/navLeft/addNews.png"),
+              name: this.$t("navLeft.Manage"),
+              admin: "all",
+              params: "GoodsManaging",
+            },
+          ],
+        },
       ];
     },
   },
@@ -233,6 +230,7 @@ export default {
   },
   methods: {
     goPath(index) {
+      // console.log(index);
       // 判断子集
       if (this.getMenuList[index].children) {
         if (this.selectLi === index) {
@@ -296,9 +294,18 @@ export default {
             type: this.getMenuList[index].children[this.currentNews].params,
           },
         });
+      } else if (index === 6) {
+        this.$router.push({
+          path: '/goods',
+          query: {
+            type: this.getMenuList[index].children[this.currentGoods].params
+          }
+        })
       }
     },
     goPathChildren(myparams, index) {
+
+      console.log(myparams);
       this.currentChildren = index;
       if (this.selectLi === 2) {
         this.currentTable = index;
@@ -314,22 +321,28 @@ export default {
           path: `/news`,
           query: { type: myparams },
         });
+      } else if (this.selectLi === 6) {
+        this.currentGoods = index;
+        this.$router.push({
+          path: `/goods`,
+          query: { type: myparams },
+        })
       }
     },
   },
   watch: {
     "$store.state.leftNavSelect": {
-      handler: function(newVal, oldVal) {
+      handler: function (newVal, oldVal) {
         this.selectLi = newVal;
       },
     },
     "$store.state.childrenTableSelect": {
-      handler: function(newVal, oldVal) {
+      handler: function (newVal, oldVal) {
         this.currentTable = newVal;
       },
     },
     "$store.state.childrenNewsSelect": {
-      handler: function(newVal, oldVal) {
+      handler: function (newVal, oldVal) {
         this.currentNews = newVal;
       },
     },
@@ -352,9 +365,11 @@ export default {
   background-size: cover;
   background-repeat: no-repeat;
   overflow-y: auto;
+
   &::-webkit-scrollbar {
     display: none;
   }
+
   .userInfo {
     width: 100%;
     padding: 19px 0;
@@ -362,26 +377,31 @@ export default {
     align-items: center;
     flex-direction: column;
     justify-content: center;
+
     .portrait {
       width: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
+
       img {
         width: 50%;
         height: auto;
       }
     }
+
     .userName {
       margin: 6px 0 3px;
       font-weight: 650;
       color: #fff;
       font-family: Poppins-Bold;
     }
+
     .setting {
       font-size: 12px;
       color: #edecec;
       font-family: Poppins-Regular;
+
       img {
         width: 12px;
         height: auto;
@@ -389,11 +409,13 @@ export default {
       }
     }
   }
+
   .menuList {
     color: #6a6c6f;
     font-size: 14px;
     font-weight: 700;
-    & > li {
+
+    &>li {
       border-width: 1px 0px;
       border-style: solid;
       border-color: #e7e7e7;
@@ -409,18 +431,21 @@ export default {
       span {
         font-family: Poppins-Bold;
       }
+
       // &:last-child {
       //   border-width: 1px 0;
       // }
       .icon {
         height: 16px;
         width: 20px;
+
         img {
           height: 100%;
           width: auto;
           vertical-align: top;
         }
       }
+
       .arrow {
         position: absolute;
         width: 6px;
@@ -435,15 +460,18 @@ export default {
         transition: all 0.3s;
       }
     }
+
     .childrenMenuListFather {
       height: 0px;
       overflow: hidden;
       transition: all 0.5s;
+
       .childrenMenuList {
         color: #6a6c6f;
         font-size: 12px;
         font-weight: 700;
-        & > li {
+
+        &>li {
           border-width: 0px 0px;
           border-style: solid;
           border-color: #e7e7e7;
@@ -454,22 +482,26 @@ export default {
           cursor: pointer;
           transition: all 0.3s;
           color: #fff;
+
           // margin-top: -1px;
           .icon {
             height: 12px;
             width: 20px;
+
             img {
               height: 100%;
               width: auto;
               vertical-align: top;
             }
           }
+
           span {
             font-family: Poppins-Bold;
           }
         }
       }
     }
+
     .activeli {
       background-color: #002a06;
     }

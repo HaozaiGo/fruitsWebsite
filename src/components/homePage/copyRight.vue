@@ -8,13 +8,13 @@
         <div class="footerList">
           <div class="footer_left">
             <ul class="linkList">
-              <li>企业团购</li>
-              <li>我要供货</li>
-              <li>有问必答</li>
-              <li>公告</li>
-              <li>服务规则</li>
-              <li>证照公示</li>
-              <li>隐私政策</li>
+              <li>{{$t('homePage.footer.row0')}}</li>
+              <li>{{$t('homePage.footer.row0_1')}}</li>
+              <li>{{$t('homePage.footer.row0_2')}}</li>
+              <li>{{$t('homePage.footer.row0_3')}}</li>
+              <li>{{$t('homePage.footer.row0_4')}}</li>
+              <li>{{$t('homePage.footer.row0_5')}}</li>
+              <li>{{$t('homePage.footer.row0_6')}}</li>
             </ul>
             <ul class="qrCodeList" style="display:none">
               <li>
@@ -29,9 +29,10 @@
             </ul>
             <ul class="companyMsg">
               <li>
-                总部地址：上海市奉贤区永南路1688号（辉展水果批发市场）7号楼220室
+                {{$t('homePage.footer.row1')}}： {{$t('homePage.footer.row1_1')}}
               </li>
-              <li>客服热线：021-38473057</li>
+              <li>{{$t('homePage.footer.row2')}}：021-38473057</li>
+              <li>{{$t('homePage.footer.row2_1')}}：{{$t('homePage.footer.row2_2')}} 13817003472</li>
               <li>
                 <a href="https://beian.miit.gov.cn/" target="_blank"
                   >沪ICP备19041670号-2</a
@@ -100,7 +101,7 @@ export default {};
       .footerList {
         display: flex;
         .footer_left {
-          width: 70%;
+          width: 90%;
           padding: 0 15px;
           .linkList {
             display: flex;
@@ -111,7 +112,7 @@ export default {};
               line-height: 1.5;
               text-align: inherit;
               font-size: 14px;
-              padding: 10px 0;
+              padding: 10px 10px;
               min-width: 77.5px;
               cursor: pointer;
               text-align: left;
@@ -238,7 +239,7 @@ export default {};
                 text-align: inherit;
                 font-size: 13px;
                 font-weight: bold;
-                padding: 8px 0;
+                padding: 8px 10px;
                 width: 50%;
                 text-align: left;
                 cursor: pointer;

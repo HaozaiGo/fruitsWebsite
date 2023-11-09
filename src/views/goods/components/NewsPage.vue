@@ -4,25 +4,47 @@
     <div class="circle">
       <h1 class="title">{{ news.title }}</h1>
       <div class="newsInfo">
+        <span>
+          <div> {{ news.category }}</div>
+          <div style="margin-top: 10px;" v-if="!token">
+            <el-tooltip class="item" effect="dark" content="请登录后进行查看" placement="top">
+              <span>单价：**** 元</span>
+            </el-tooltip>
+          </div>
+
+
+          <div style="margin-top: 10px;" v-else>单价：{{ news.price }}元</div>
+
+        </span>
         <span>{{ news.createdAt }}</span>
-        <span>{{ news.author }}</span>
       </div>
+
       <!-- 文章内容 -->
       <div class="circleText">
-        <template v-for="(item, index) in news.content">
+        <template v-for="(item, index) in news.introduction">
+
+          <img v-if="item.type === 'image'" :src="item.imageName" draggable="false" />
           <p v-if="item.type === 'text'">
             {{ item.content }}
           </p>
-          <img v-else-if="item.type === 'image'" :src="item.imageName" draggable="false" />
         </template>
+
+        <div>
+          <p>所属公司：{{ news.belongCompany }}</p>
+          <p> 月销量：{{ news.monthlySales }} </p>
+          <p>物流方式：{{ news.logisticsMethod }}</p>
+        </div>
+
       </div>
       <!-- 上一篇 -->
       <div class="selectOther">
-        <div class="preCircle" v-if="neighborsData.nextOne.title !== ''" @click="goNews(neighborsData.nextOne.newsId)">
-          {{$t('home.previous')}} <span>{{ neighborsData.nextOne.title }}</span>
+        <div class="preCircle" v-if="neighborsData.nextOne.title !== ''"
+          @click="goNews(neighborsData.nextOne.farmToolsId)">
+          上一篇 <span>{{ neighborsData.nextOne.title }}</span>
         </div>
-        <div class="nextCircle" v-if="neighborsData.lastOne.title !== ''" @click="goNews(neighborsData.lastOne.newsId)">
-          {{$t('home.next')}}<span>{{ neighborsData.lastOne.title }}</span>
+        <div class="nextCircle" v-if="neighborsData.lastOne.title !== ''"
+          @click="goNews(neighborsData.lastOne.farmToolsId)">
+          下一篇 <span>{{ neighborsData.lastOne.title }}</span>
         </div>
       </div>
     </div>
@@ -34,66 +56,55 @@ import moment from "moment";
 export default {
   data() {
     return {
+      token: window.sessionStorage.getItem('token'),
       news: {},
       neighborsData: {
         nextOne: {
           title: "",
-          newsId: "",
+          farmToolsId: "",
         },
-        lastOne: { title: "", newsId: "" },
+        lastOne: { title: "", farmToolsId: "" },
       },
-      lang:localStorage.getItem("lang") || "zh"
     };
   },
   created() {
     this.getNews();
   },
-  watch: {
-  },
-  mounted() {
-    this.$eventBus.$on("changeLanguage", (lang) => {
-      this.lang = lang;
-      this.getNews();
-    });
-  },
-  computed: {
-
-  },
   methods: {
     getNews() {
-      let newsId = this.$route.query.newsId;
+      let farmToolsId = this.$route.query.farmToolsId;
       this.axios
-        .get(` ${process.env.VUE_APP_URL}/api/news/${newsId}?lang=${this.lang === 'en' ? '1' : '0'}`)
+        .get(` ${process.env.VUE_APP_URL}/api/farmTools/${farmToolsId}`)
         .then((res) => {
           this.news = res.data.data[0];
           this.news.createdAt = moment(this.news.createdAt).format(
             "YYYY-MM-DD HH:mm"
           );
-          this.news.content = JSON.parse(this.news.content);
-          for (let i = 0; i < this.news.content.length; i++) {
-            if (this.news.content[i].type === "image") {
-              this.news.content[
+          this.news.introduction = JSON.parse(this.news.introduction);
+          for (let i = 0; i < this.news.introduction.length; i++) {
+            if (this.news.introduction[i].type === "image") {
+              this.news.introduction[
                 i
-              ].imageName = `${process.env.VUE_APP_URL}/api/news/picture/${this.news.content[i].imageName}`;
+              ].imageName = `${process.env.VUE_APP_URL}/api/farmTools/picture/${this.news.introduction[i].imageName}`;
             }
           }
           this.getNeighbors();
         });
     },
     getNeighbors() {
-      let newsId = this.$route.query.newsId;
+      let farmToolsId = this.$route.query.farmToolsId;
       this.axios
-        .get(` ${process.env.VUE_APP_URL}/api/news/${newsId}/neighbors`)
+        .get(` ${process.env.VUE_APP_URL}/api/farmTools/${farmToolsId}/neighbors`)
         .then((res) => {
           this.neighborsData = res.data.data;
         });
     },
 
-    goNews(newsId) {
+    goNews(farmToolsId) {
       this.$router.replace({
-        name: "NewsPage",
+        name: "GoodsPage",
         query: {
-          newsId,
+          farmToolsId,
         },
       });
       this.getNews();
@@ -107,7 +118,7 @@ export default {
   user-select: text;
 
   .newsBgc {
-    background-image: url(../../assets/newsPage/comunidades.jpg);
+    background-image: url(../../../assets/newsPage/comunidades.jpg);
     background-position: top center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -133,13 +144,13 @@ export default {
     }
 
     .newsInfo {
-      color: #999;
+      color: #797878;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       padding-bottom: 24px;
       margin-top: 36px;
-      font-size: 14px;
+      font-size: 15px;
       border-bottom: 1px solid #ebebeb;
     }
 

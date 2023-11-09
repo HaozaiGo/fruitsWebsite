@@ -7,17 +7,32 @@
     </div>
     <div class="partner">
       <div class="partnerBox">
-        <div class="partnerTitle">合作伙伴</div>
+        <div class="partnerTitle">{{ $t('homePage.partner.title1') }}</div>
+        <div class="partnerList">
+          <ul style="justify-content: center;">
+            <li><img src="@/assets/partner/San Clemente.jpg" alt="" /></li>
+            <li><img src="@/assets/partner/Hortifrut.jpg" alt="" /></li>
+            <li><img src="@/assets/partner/p1.png" alt="" /></li>
+            <li><img src="@/assets/partner/p2.png" alt="" /></li>
+            <li><img src="@/assets/partner/p3.png" alt="" /></li>
+            <li><img src="@/assets/partner/p4.png" alt="" /></li>
+          </ul>
+        </div>
+      </div>
+      <div class="partnerBox">
+        <div class="partnerTitle" style="margin-top: 40px;">{{ $t('homePage.partner.title') }}</div>
         <div class="partnerList">
           <ul>
-            <li><img src="@/assets/partner/partner1.png" alt="" /></li>
+            <li><img src="@/assets/partner/partner4.jpeg" alt="" /></li>
             <li><img src="@/assets/partner/partner2.jpeg" alt="" /></li>
             <li><img src="@/assets/partner/partner3.jpeg" alt="" /></li>
-            <li><img src="@/assets/partner/partner4.jpeg" alt="" /></li>
+            <li><img src="@/assets/partner/partner1.png" alt="" /></li>
             <li><img src="@/assets/partner/partner5.png" alt="" /></li>
             <li><img src="@/assets/partner/partner6.png" alt="" /></li>
             <li><img src="@/assets/partner/partner7.png" alt="" /></li>
             <li><img src="@/assets/partner/partner8.png" alt="" /></li>
+            <li><img src="@/assets/partner/partner9.png" alt="" /></li>
+            <li><img src="@/assets/partner/partner10.png" alt="" /></li>
           </ul>
         </div>
       </div>
@@ -41,11 +56,14 @@ export default {
   overflow: auto;
   padding-top: 76.8px;
   background-color: #fff;
+
   .cooperativePartnerBG {
     width: 100%;
     margin-bottom: 80px;
+
     .cooperativePartnerBGBox {
       width: 100%;
+
       .cooperativePartnerBGCover {
         height: 280px;
         width: 100%;
@@ -59,26 +77,34 @@ export default {
       }
     }
   }
+
   .partner {
     width: 100%;
     margin-bottom: 80px;
+
     .partnerBox {
       width: 100%;
+
       // 公司简介标题
       .partnerTitle {
         text-align: center;
         color: rgba(0, 0, 0, 1);
         font-size: 40px;
-        letter-spacing: 10px;
+        font-weight: 700;
+        // letter-spacing: 10px;
         margin-bottom: 60px;
+        font-family: 'CL';
       }
+
       .partnerList {
         width: 100%;
         max-width: 1200px;
         margin: 0 auto;
+
         ul {
           display: flex;
           flex-wrap: wrap;
+
           li {
             width: 25%;
             padding: 12px;
@@ -86,6 +112,7 @@ export default {
             align-items: center;
             justify-content: center;
             margin-bottom: 20px;
+
             img {
               width: 100%;
               vertical-align: bottom;
@@ -96,23 +123,29 @@ export default {
     }
   }
 }
+
 @media (max-width: 1200px) {
   .cooperativePartner {
     padding-top: 73.6px;
+
     .cooperativePartnerBG {
       width: 100%;
       margin-bottom: 60px;
+
       .cooperativePartnerBGBox {
         width: 100%;
-        .cooperativePartnerBGCover {
-        }
+
+        .cooperativePartnerBGCover {}
       }
     }
+
     .partner {
       width: 100%;
       margin-bottom: 80px;
+
       .partnerBox {
         width: 100%;
+
         // 公司简介标题
         .partnerTitle {
           text-align: center;
@@ -121,13 +154,16 @@ export default {
           letter-spacing: 10px;
           margin-bottom: 60px;
         }
+
         .partnerList {
           width: 100%;
           max-width: 95%;
           margin: 0 auto;
+
           ul {
             display: flex;
             flex-wrap: wrap;
+
             li {
               width: 25%;
               padding: 12px;
@@ -135,6 +171,7 @@ export default {
               align-items: center;
               justify-content: center;
               margin-bottom: 20px;
+
               img {
                 width: 100%;
                 vertical-align: bottom;
@@ -146,25 +183,32 @@ export default {
     }
   }
 }
+
 @media (max-width: 768px) {
   .cooperativePartner {
     padding-top: 55px;
+
     .cooperativePartnerBG {
       width: 100%;
       margin-bottom: 60px;
+
       .cooperativePartnerBGBox {
         width: 100%;
+
         .cooperativePartnerBGCover {
           margin-bottom: 60px;
           height: 180px;
         }
       }
     }
+
     .partner {
       width: 100%;
       margin-bottom: 80px;
+
       .partnerBox {
         width: 100%;
+
         // 公司简介标题
         .partnerTitle {
           text-align: center;
@@ -173,13 +217,16 @@ export default {
           letter-spacing: 6px;
           margin-bottom: 40px;
         }
+
         .partnerList {
           width: 100%;
           max-width: 1200px;
           margin: 0 auto;
+
           ul {
             display: flex;
             flex-wrap: wrap;
+
             li {
               width: 50%;
               padding: 12px;
@@ -187,6 +234,7 @@ export default {
               align-items: center;
               justify-content: center;
               margin-bottom: 20px;
+
               img {
                 width: 100%;
                 vertical-align: bottom;
@@ -197,5 +245,4 @@ export default {
       }
     }
   }
-}
-</style>
+}</style>

@@ -1,3 +1,7 @@
+/*
+ * @Description: 
+ * @Author: xiaoHao
+ */
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
@@ -10,10 +14,13 @@ import Viewer from "v-viewer";
 import "viewerjs/dist/viewer.css";
 import moment from "moment";
 import "nprogress/nprogress.css";
+import "@/assets/text/text.css";
 import "./utils/axios";
 
 Vue.config.productionTip = false;
 Vue.prototype.$moment = moment;
+
+Vue.prototype.$eventBus = new Vue()
 // Vue.prototype.$echarts = echarts;
 Vue.use(ElementUI);
 Vue.use(Viewer);

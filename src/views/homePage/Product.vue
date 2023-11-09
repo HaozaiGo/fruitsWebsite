@@ -4,8 +4,11 @@
       <div class="productBGBox">
         <div class="productBGCover">
           <div class="productBGContent">
-            <p>招牌水果,</p>
-            <p>为好吃而生</p>
+            <h5 style="font-family: 'CL';font-size: 40px;text-align: center;line-height: 65px;">{{
+              $t('homePage.product.title') }}</h5>
+            <h1 style="font-family: 'CL';font-size: 66px;text-align: center;"> {{ $t('homePage.product.title1') }}</h1>
+            <!-- <h5 style="font-family: 'Montserrat',sans-serif;font-size: 50px;"> {{ $t('homePage.product.title') }},</h5>
+            <p style="font-family: 'Montserrat',sans-serif;font-size: 70px;">{{ $t('homePage.product.title1') }}</p> -->
           </div>
         </div>
       </div>
@@ -98,8 +101,9 @@
       <!-- 招牌水果 -->
       <div class="signatureFruit">
         <div class="signatureFruitBox">
-          <div class="signatureFruitTitle">招牌水果</div>
-          <div class="signatureFruitDesc">来自大自然的诚意作品</div>
+
+          <div class="signatureFruitTitle">{{ $t('homePage.product.title') }}</div>
+          <div class="signatureFruitDesc">{{ $t('homePage.product.title2') }}</div>
           <div class="signatureFruitList">
             <ul class="signatureFruitUl">
               <li class="signatureFruitLi">
@@ -107,13 +111,13 @@
                   <img src="@/assets/product/product1.jpg" alt="" />
                 </div>
                 <div class="text">
-                  <div class="signatureFruitName">牛顿苹果</div>
+                  <div class="signatureFruitName">{{ $t('homePage.product.production') }}</div>
                   <div class="lineLight"></div>
                   <ul>
-                    <li>产地：南非西开普省</li>
-                    <li>品种：红富士</li>
-                    <li>特点：个小脆甜多汁，产自阳光南非，老树果风味好</li>
-                    <li>上市周期：6月～10月</li>
+                    <li>{{ $t('homePage.product.pro1') }}：{{ $t('homePage.product.pro1_1') }}</li>
+                    <li>{{ $t('homePage.product.pro2') }}：{{ $t('homePage.product.pro2_1') }}</li>
+                    <li>{{ $t('homePage.product.pro3') }}：{{ $t('homePage.product.pro3_1') }}</li>
+                    <li>{{ $t('homePage.product.pro4') }}：{{ $t('homePage.product.pro4_1') }}</li>
                   </ul>
                 </div>
               </li>
@@ -122,17 +126,17 @@
                   <img src="@/assets/product/product2.jpg" alt="" />
                 </div>
                 <div class="text">
-                  <div class="signatureFruitName">牛顿苹果</div>
+                  <div class="signatureFruitName" style=" line-height: 1.2;margin-bottom: 15px;">{{ $t('homePage.product.title3') }}</div>
                   <div class="lineLight"></div>
                   <ul>
-                    <li>产地：南非西开普省</li>
-                    <li>品种：红富士</li>
-                    <li>特点：个小脆甜多汁，产自阳光南非，老树果风味好</li>
-                    <li>上市周期：6月～10月</li>
+                    <li>{{ $t('homePage.product.prod') }}：{{ $t('homePage.product.prod1_1') }}</li>
+                    <li>{{ $t('homePage.product.prod2') }}：{{ $t('homePage.product.prod2_1') }}</li>
+                    <li>{{ $t('homePage.product.prod3') }}：{{ $t('homePage.product.prod3_1') }}</li>
+                    <li>{{ $t('homePage.product.prod4') }}：{{ $t('homePage.product.prod4_1') }}</li>
                   </ul>
                 </div>
               </li>
-              <li class="signatureFruitLi">
+              <!-- <li class="signatureFruitLi">
                 <div class="image">
                   <img src="@/assets/product/product1.jpg" alt="" />
                 </div>
@@ -162,7 +166,7 @@
                     <li>上市周期：6月～10月</li>
                   </ul>
                 </div>
-              </li>
+              </li> -->
             </ul>
           </div>
         </div>
@@ -203,11 +207,14 @@ export default {
 .product {
   width: 100%;
   padding-top: 76.8px;
+
   .productBG {
     width: 100%;
     margin-bottom: 80px;
+
     .productBGBox {
       width: 100%;
+
       .productBGCover {
         height: 540px;
         width: 100%;
@@ -218,6 +225,7 @@ export default {
         background-size: cover;
         position: relative;
         margin-bottom: 90px;
+
         .productBGContent {
           text-align: left;
           color: rgba(255, 255, 255, 1);
@@ -225,12 +233,15 @@ export default {
           font-weight: normal;
           line-height: 1;
           position: absolute;
-          left: 8.33%;
+          // left: 8.33%;
+          width: 100%;
           top: 50%;
           transform: translateY(-50%);
           padding: 0 15px;
+
           p {
             margin: 16px;
+
             &:last-child {
               text-indent: 1em;
             }
@@ -239,14 +250,17 @@ export default {
       }
     }
   }
+
   .introductionFruitSystem,
   .fruitSystemIntrouduct {
     width: 100%;
     margin-bottom: 105px;
+
     .introductionFruitSystemBox {
       width: 100%;
       max-width: 1200px;
       margin: 0 auto;
+
       .introductionFruitSystemTitle {
         text-align: center;
         color: rgba(0, 0, 0, 1);
@@ -254,20 +268,24 @@ export default {
         letter-spacing: 10px;
         margin-bottom: 80px;
       }
+
       .introductionFruitSystemContent {
         width: 100%;
         display: flex;
+
         .imgBox {
           width: 50%;
           padding: 0 32px;
           display: flex;
           align-items: center;
           justify-content: center;
+
           img {
             width: 85%;
             height: auto;
           }
         }
+
         .introductionFruitSystemContentList {
           padding: 0 32px;
           display: flex;
@@ -275,12 +293,14 @@ export default {
           //   align-items: center;
           justify-content: center;
           width: 50%;
+
           .lineLight {
             width: 53px;
             height: 2px;
             background-color: #00852a;
             margin-bottom: 44px;
           }
+
           p {
             // margin-bottom: 38px;
             text-align: left;
@@ -292,15 +312,18 @@ export default {
       }
     }
   }
+
   .productMedia {
     width: 100%;
     background-color: rgba(251, 250, 249, 1);
+
     .productMediaBox {
       width: 100%;
       max-width: 1200px;
       margin: 0 auto;
       padding: 80px 0 120px;
       position: relative;
+
       .productMediaTitle {
         text-align: center;
         color: rgba(0, 0, 0, 1);
@@ -308,32 +331,39 @@ export default {
         letter-spacing: 10px;
         margin-bottom: 10px;
       }
+
       .productMediaDesc {
         text-align: center;
         color: rgba(64, 33, 23, 1);
         font-size: 22px;
         margin-bottom: 50px;
       }
+
       .productSwiper {
         width: 100%;
         position: relative;
+
         .productSwiperBox {
           width: calc(100% - 108px);
           overflow: hidden;
           margin: 0 auto;
+
           .swiperSlideBox {
             width: 100%;
             display: flex;
+
             .left_side {
               width: 40%;
               display: flex;
               flex-direction: column;
               justify-content: center;
               padding: 0 25px;
+
               .productSwiperTitle {
                 text-align: left;
                 font-size: 26px;
               }
+
               .lineLight {
                 width: 64px;
                 height: 2px;
@@ -341,6 +371,7 @@ export default {
                 margin-top: 10px;
                 margin-bottom: 20px;
               }
+
               p {
                 text-align: left;
                 color: rgba(103, 103, 103, 1);
@@ -349,9 +380,11 @@ export default {
                 margin-bottom: 8px;
               }
             }
+
             .right_side {
               width: 60%;
               padding: 0 25px;
+
               video {
                 width: 100%;
                 vertical-align: bottom;
@@ -359,6 +392,7 @@ export default {
             }
           }
         }
+
         .swiper-button-next,
         .swiper-button-prev {
           width: 54px;
@@ -371,6 +405,7 @@ export default {
           top: 50%;
           transform: translateY(-50%);
           cursor: pointer;
+
           img {
             width: 50%;
             height: auto;
@@ -381,18 +416,23 @@ export default {
             vertical-align: bottom;
           }
         }
+
         .swiper-button-next {
           left: 0%;
+
           img {
             transform: translate(-50%, -50%) rotate(90deg);
           }
         }
+
         .swiper-button-prev {
           right: 0%;
+
           img {
             transform: translate(-50%, -50%) rotate(-90deg);
           }
         }
+
         .my-bullet {
           border-radius: 50%;
           width: 10px;
@@ -401,10 +441,12 @@ export default {
           display: inline-block;
           background: rgba(0, 0, 0, 0.2);
         }
+
         .my-bullet-active {
           background: #41a460;
           width: 10px;
         }
+
         .swiper-pagination {
           position: absolute;
           z-index: 1;
@@ -415,51 +457,63 @@ export default {
       }
     }
   }
+
   .signatureFruit {
     width: 100%;
     margin-bottom: 80px;
     margin-top: 80px;
+
     .signatureFruitBox {
       width: 100%;
+
       // 公司简介标题
       .signatureFruitTitle {
         text-align: center;
         color: rgba(0, 0, 0, 1);
         font-size: 40px;
-        letter-spacing: 10px;
+        font-weight: 700;
+        font-family: 'CL';
       }
+
       .signatureFruitDesc {
         text-align: center;
         color: rgba(64, 33, 23, 1);
         font-size: 22px;
         padding: 5px 0;
         margin-bottom: 40px;
+        font-family: 'CL';
       }
+
       .signatureFruitList {
         width: 100%;
         max-width: 1200px;
         margin: 0 auto;
+
         .signatureFruitUl {
           width: 100%;
           display: flex;
           align-items: center;
           justify-content: center;
           flex-wrap: wrap;
+
           .signatureFruitLi {
             width: calc(25% - 48px);
             margin: 24px;
             position: relative;
             border-radius: 10px;
             overflow: hidden;
+
             &:hover {
               .text {
                 opacity: 1;
                 transform: rotateY(0deg);
               }
+
               .image {
                 transform: rotateY(180deg);
               }
             }
+
             .text {
               position: absolute;
               left: 0;
@@ -475,6 +529,7 @@ export default {
               transition: all 0.5s;
               transform: rotateY(180deg);
               border-radius: 10px;
+
               .signatureFruitName {
                 color: rgba(255, 255, 255, 1);
                 font-size: 20px;
@@ -482,6 +537,7 @@ export default {
                 text-align: left;
                 font-weight: bold;
               }
+
               .lineLight {
                 width: 64px;
                 height: 1px;
@@ -489,6 +545,7 @@ export default {
 
                 margin-bottom: 20px;
               }
+
               ul {
                 li {
                   color: rgba(255, 255, 255, 1);
@@ -498,11 +555,13 @@ export default {
                 }
               }
             }
+
             .image {
               position: relative;
               transition: all 0.5s;
               //   padding: 12px;
               border-radius: 10px;
+
               img {
                 width: 100%;
                 height: auto;
@@ -515,14 +574,18 @@ export default {
     }
   }
 }
+
 @media (max-width: 1200px) {
   .product {
     padding-top: 73.6px;
+
     .productBG {
       width: 100%;
       margin-bottom: 60px;
+
       .productBGBox {
         width: 100%;
+
         .productBGCover {
           .productBGContent {
             font-size: 66px;
@@ -530,22 +593,27 @@ export default {
         }
       }
     }
+
     .introductionFruitSystem {
       margin-bottom: 60px;
+
       .introductionFruitSystemBox {
         width: 100%;
         max-width: 95%;
       }
     }
+
     .productMedia {
       width: 100%;
       background-color: rgba(251, 250, 249, 1);
+
       .productMediaBox {
         width: 100%;
         max-width: 95%;
         margin: 0 auto;
         padding: 80px 0 120px;
         position: relative;
+
         .productMediaTitle {
           text-align: center;
           color: rgba(0, 0, 0, 1);
@@ -553,32 +621,39 @@ export default {
           letter-spacing: 10px;
           margin-bottom: 10px;
         }
+
         .productMediaDesc {
           text-align: center;
           color: rgba(64, 33, 23, 1);
           font-size: 22px;
           margin-bottom: 50px;
         }
+
         .productSwiper {
           width: 100%;
           position: relative;
+
           .productSwiperBox {
             width: 100%;
             overflow: hidden;
             margin: 0 auto;
+
             .swiperSlideBox {
               width: 100%;
               display: flex;
+
               .left_side {
                 width: 40%;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 padding: 0 25px;
+
                 .productSwiperTitle {
                   text-align: left;
                   font-size: 22px;
                 }
+
                 .lineLight {
                   width: 64px;
                   height: 2px;
@@ -586,6 +661,7 @@ export default {
                   margin-top: 10px;
                   margin-bottom: 20px;
                 }
+
                 p {
                   text-align: left;
                   color: rgba(103, 103, 103, 1);
@@ -594,9 +670,11 @@ export default {
                   margin-bottom: 8px;
                 }
               }
+
               .right_side {
                 width: 60%;
                 padding: 0 25px;
+
                 video {
                   width: 100%;
                   vertical-align: bottom;
@@ -604,6 +682,7 @@ export default {
               }
             }
           }
+
           .swiper-button-next,
           .swiper-button-prev {
             width: 54px;
@@ -617,6 +696,7 @@ export default {
             transform: translateY(-50%);
             cursor: pointer;
             display: none;
+
             img {
               width: 50%;
               height: auto;
@@ -627,18 +707,23 @@ export default {
               vertical-align: bottom;
             }
           }
+
           .swiper-button-next {
             left: 0%;
+
             img {
               transform: translate(-50%, -50%) rotate(90deg);
             }
           }
+
           .swiper-button-prev {
             right: 0%;
+
             img {
               transform: translate(-50%, -50%) rotate(-90deg);
             }
           }
+
           .my-bullet {
             border-radius: 50%;
             width: 10px;
@@ -647,10 +732,12 @@ export default {
             display: inline-block;
             background: rgba(0, 0, 0, 0.2);
           }
+
           .my-bullet-active {
             background: #41a460;
             width: 10px;
           }
+
           .swiper-pagination {
             position: absolute;
             z-index: 1;
@@ -661,12 +748,15 @@ export default {
         }
       }
     }
+
     .signatureFruit {
       width: 100%;
       margin-bottom: 60px;
       margin-top: 60px;
+
       .signatureFruitBox {
         width: 100%;
+
         // 公司简介标题
         .signatureFruitTitle {
           text-align: center;
@@ -674,6 +764,7 @@ export default {
           font-size: 40px;
           letter-spacing: 10px;
         }
+
         .signatureFruitDesc {
           text-align: center;
           color: rgba(64, 33, 23, 1);
@@ -681,10 +772,12 @@ export default {
           padding: 5px 0;
           margin-bottom: 40px;
         }
+
         .signatureFruitList {
           width: 100%;
           max-width: 95%;
           margin: 0 auto;
+
           .signatureFruitUl {
             .signatureFruitLi {
               width: calc(25% - 24px);
@@ -694,9 +787,11 @@ export default {
                 .signatureFruitName {
                   font-size: 16px;
                 }
+
                 .lineLight {
                   height: 1px;
                 }
+
                 ul {
                   li {
                     font-size: 12px;
@@ -710,17 +805,22 @@ export default {
     }
   }
 }
+
 @media (max-width: 768px) {
   .product {
     padding-top: 55px;
+
     .productBG {
       width: 100%;
       margin-bottom: 60px;
+
       .productBGBox {
         width: 100%;
+
         .productBGCover {
           margin-bottom: 60px;
           height: 360px;
+
           .productBGContent {
             font-size: 36px;
             font-weight: normal;
@@ -730,29 +830,36 @@ export default {
         }
       }
     }
+
     .introductionFruitSystem,
     .fruitSystemIntrouduct {
       margin-bottom: 60px;
+
       .introductionFruitSystemBox {
         width: 100%;
         max-width: 100%;
+
         .introductionFruitSystemTitle {
           font-size: 28px;
           letter-spacing: 6px;
         }
+
         .introductionFruitSystemContent {
           display: flex;
           flex-direction: column;
+
           .imgBox {
             width: 100%;
             margin-bottom: 40px;
-            img {
-            }
+
+            img {}
           }
+
           .introductionFruitSystemContentList {
             width: 100%;
-            .lineLight {
-            }
+
+            .lineLight {}
+
             p {
               font-size: 16px;
             }
@@ -760,14 +867,17 @@ export default {
         }
       }
     }
+
     .productMedia {
       width: 100%;
       background-color: rgba(251, 250, 249, 1);
+
       .productMediaBox {
         width: 100%;
         max-width: 100%;
         margin: 0 auto;
         padding: 60px 0 100px;
+
         .productMediaTitle {
           text-align: center;
           color: rgba(0, 0, 0, 1);
@@ -775,34 +885,41 @@ export default {
           letter-spacing: 6px;
           margin-bottom: 10px;
         }
+
         .productMediaDesc {
           text-align: center;
           color: rgba(64, 33, 23, 1);
           font-size: 18px;
           margin-bottom: 50px;
         }
+
         .productSwiper {
           width: 100%;
           position: relative;
           padding: 0 20px;
+
           .productSwiperBox {
             width: 100%;
             overflow: hidden;
             margin: 0 auto;
+
             .swiperSlideBox {
               width: 100%;
               display: flex;
               flex-direction: column;
+
               .left_side {
                 width: 100%;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 padding: 0;
+
                 .productSwiperTitle {
                   text-align: left;
                   font-size: 19px;
                 }
+
                 .lineLight {
                   width: 48px;
                   height: 1.5px;
@@ -810,6 +927,7 @@ export default {
                   margin-top: 20px;
                   margin-bottom: 20px;
                 }
+
                 p {
                   text-align: left;
                   color: rgba(103, 103, 103, 1);
@@ -818,10 +936,12 @@ export default {
                   margin-bottom: 8px;
                 }
               }
+
               .right_side {
                 width: 100%;
                 padding: 0;
                 margin-top: 20px;
+
                 video {
                   width: 100%;
                   vertical-align: bottom;
@@ -829,6 +949,7 @@ export default {
               }
             }
           }
+
           .swiper-button-next,
           .swiper-button-prev {
             width: 54px;
@@ -841,6 +962,7 @@ export default {
             top: 50%;
             transform: translateY(-50%);
             cursor: pointer;
+
             img {
               width: 50%;
               height: auto;
@@ -851,18 +973,23 @@ export default {
               vertical-align: bottom;
             }
           }
+
           .swiper-button-next {
             left: 0%;
+
             img {
               transform: translate(-50%, -50%) rotate(90deg);
             }
           }
+
           .swiper-button-prev {
             right: 0%;
+
             img {
               transform: translate(-50%, -50%) rotate(-90deg);
             }
           }
+
           .my-bullet {
             border-radius: 50%;
             width: 10px;
@@ -871,10 +998,12 @@ export default {
             display: inline-block;
             background: rgba(0, 0, 0, 0.2);
           }
+
           .my-bullet-active {
             background: #41a460;
             width: 10px;
           }
+
           .swiper-pagination {
             position: absolute;
             z-index: 1;
@@ -885,12 +1014,15 @@ export default {
         }
       }
     }
+
     .signatureFruit {
       width: 100%;
       margin-bottom: 80px;
       margin-top: 60px;
+
       .signatureFruitBox {
         width: 100%;
+
         // 公司简介标题
         .signatureFruitTitle {
           text-align: center;
@@ -898,6 +1030,7 @@ export default {
           font-size: 28px;
           letter-spacing: 6px;
         }
+
         .signatureFruitDesc {
           text-align: center;
           color: rgba(64, 33, 23, 1);
@@ -905,10 +1038,12 @@ export default {
           padding: 5px 0;
           margin-bottom: 30px;
         }
+
         .signatureFruitList {
           width: 100%;
           max-width: 1200px;
           margin: 0 auto;
+
           .signatureFruitUl {
             width: 100%;
             display: flex;
@@ -916,6 +1051,7 @@ export default {
             align-items: center;
             justify-content: center;
             flex-wrap: wrap;
+
             .signatureFruitLi {
               width: calc(100% - 40px);
               margin: 20px;
@@ -923,15 +1059,18 @@ export default {
               border-radius: 10px;
               overflow: hidden;
               margin-bottom: 40px;
+
               &:hover {
                 .text {
                   opacity: 1;
                   transform: rotateY(0deg);
                 }
+
                 .image {
                   transform: rotateY(180deg);
                 }
               }
+
               .text {
                 position: absolute;
                 left: 0;
@@ -946,6 +1085,7 @@ export default {
                 opacity: 0;
                 transition: all 0.5s;
                 transform: rotateY(180deg);
+
                 .signatureFruitName {
                   color: rgba(255, 255, 255, 1);
                   font-size: 24px;
@@ -953,6 +1093,7 @@ export default {
                   text-align: left;
                   font-weight: bold;
                 }
+
                 .lineLight {
                   width: 64px;
                   height: 2px;
@@ -960,6 +1101,7 @@ export default {
                   margin-top: 10px;
                   margin-bottom: 20px;
                 }
+
                 ul {
                   li {
                     color: rgba(255, 255, 255, 1);
@@ -969,9 +1111,11 @@ export default {
                   }
                 }
               }
+
               .image {
                 position: relative;
                 transition: all 0.5s;
+
                 //   padding: 12px;
                 img {
                   width: 100%;
@@ -985,5 +1129,4 @@ export default {
       }
     }
   }
-}
-</style>
+}</style>

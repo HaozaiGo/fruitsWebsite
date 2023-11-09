@@ -11,7 +11,9 @@
                   activeSlide === 0 ? 'animation:animeFade 1.5s;' : 'opacity:0'
                 "
               >
-                把新鲜带给各位
+
+                {{$t('homePage.Home.nav1')}}
+
               </p>
               <div
                 class="goLinkText"
@@ -20,7 +22,7 @@
                   activeSlide === 0 ? 'animation:animeFade 1.5s;' : 'opacity:0'
                 "
               >
-                <img src="@/assets/homePage/arrow.png" alt="" />了解盛克盟
+                <img src="@/assets/homePage/arrow.png" alt="" />{{$t('homePage.Home.more1')}}
               </div>
             </div>
           </div>
@@ -39,7 +41,7 @@
                     : 'opacity:0'
                 "
               >
-                新鲜
+                {{$t('homePage.Home.nav2')}}
               </p>
               <p
                 :style="
@@ -48,7 +50,7 @@
                     : 'opacity:0'
                 "
               >
-                是对水果基本的要求
+                {{$t('homePage.Home.more2')}}
               </p>
               <div
                 class="goLinkText"
@@ -57,11 +59,11 @@
                   activeSlide === 1 ? 'animation:animeFade 1.5s;' : 'opacity:0'
                 "
               >
-                <img src="@/assets/homePage/arrow.png" alt="" />我们的产品
+                <img src="@/assets/homePage/arrow.png" alt="" />{{$t('homePage.Home.more2_1')}}
               </div>
               <hr />
               <div class="desc">
-                我们相信，好吃的水果是上苍对人类遵循天地万物自然规律的奖赏
+                {{$t('homePage.Home.more2_2')}}
               </div>
             </div>
           </div>
@@ -77,7 +79,7 @@
                     : 'opacity:0'
                 "
               >
-                因为专业
+                {{$t('homePage.Home.nav3')}}
               </p>
               <p
                 :style="
@@ -86,7 +88,7 @@
                     : 'opacity:0'
                 "
               >
-                所以新鲜
+              {{$t('homePage.Home.more3')}}
               </p>
               <div
                 class="goLinkText"
@@ -95,14 +97,14 @@
                   activeSlide === 2 ? 'animation:animeFade 1.5s;' : 'opacity:0'
                 "
               >
-                <img src="@/assets/homePage/arrow.png" alt="" />合作伙伴
+                <img src="@/assets/homePage/arrow.png" alt="" />{{$t('homePage.Home.more3_1')}}
               </div>
               <hr />
               <div class="desc">
-                让上游因水果种植而富足
+                {{$t('homePage.Home.more3_2')}}
               </div>
               <div class="desc">
-                让水果从业者更有尊严
+                {{$t('homePage.Home.more3_3')}}
               </div>
             </div>
           </div>
