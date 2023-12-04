@@ -271,7 +271,7 @@ const routes = [
   {
     path: "/goodsInformation/newsPage",
     name: "GoodsPage",
-    component: () => import("../views/goods/components/NewsPage.vue"),
+    component: () => import("../views/goods/components/goodsPage.vue"),
     meta: {
       headerNav: false,
       leftNav: false,

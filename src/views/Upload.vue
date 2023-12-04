@@ -1,26 +1,13 @@
 <template>
-  <div
-    class="upload"
-    :style="{
-      width: $store.state.showMenu === true ? '100%' : 'calc(100% - 181px)',
-    }"
-  >
+  <div class="upload" :style="{
+    width: $store.state.showMenu === true ? '100%' : 'calc(100% - 181px)',
+  }">
     <div class="uploadExecBox">
       <div class="uploadHeader">{{ $t("upload.uploadData") }}</div>
       <div class="uploadExec">
-        <input
-          type="file"
-          ref="fileInput"
-          class="fileInput"
-          @change="getUploadFile"
-        />
-        <el-button
-          slot="trigger"
-          size="small"
-          type="primary"
-          @click="fileInputClick()"
-          >{{ $t("upload.selectFile") }}</el-button
-        >
+        <input type="file" ref="fileInput" class="fileInput" @change="getUploadFile" />
+        <el-button slot="trigger" size="small" type="primary" @click="fileInputClick()">{{ $t("upload.selectFile")
+        }}</el-button>
 
         <div slot="tip" class="el-upload__tip">
           {{ $t("upload.xlsx") }}
@@ -36,32 +23,15 @@
       <div class="uploadImages">
         <el-form ref="form" :model="form" label-width="80px">
           <el-form-item :label="$t('upload.lot')">
-            <el-select
-              v-model="value"
-              :placeholder="$t('upload.pleaseChoose')"
-              size="small"
-            >
-              <el-option
-                v-for="(item, index) in options"
-                :key="item.index"
-                :label="index + 1 + '、' + item.lot"
-                :value="item.containerId"
-              >
+            <el-select v-model="value" :placeholder="$t('upload.pleaseChoose')" size="small">
+              <el-option v-for="(item, index) in options" :key="item.index" :label="index + 1 + '、' + item.lot"
+                :value="item.containerId">
               </el-option>
             </el-select>
           </el-form-item>
           <el-form-item :label="$t('upload.images')">
-            <el-upload
-              class="upload-demo"
-              drag
-              action="#"
-              :http-request="(params) => uploadImage(params)"
-              multiple
-              :file-list="fileList"
-              :before-upload="handleBeforeUpload"
-              :on-progress="handleProgress"
-              ref="uploadImg"
-            >
+            <el-upload class="upload-demo" drag action="#" :http-request="(params) => uploadImage(params)" multiple
+              :file-list="fileList" :before-upload="handleBeforeUpload" :on-progress="handleProgress" ref="uploadImg">
               <i class="el-icon-upload"></i>
               <div class="el-upload__text">
                 {{ $t("upload.uploadTip")
@@ -77,11 +47,7 @@
     </div>
     <div class="progressImage" v-if="isUpload">
       <div class="progressBox">
-        <el-progress
-          :percentage="imageUploadProgress"
-          :format="format"
-          color="#409eff"
-        ></el-progress>
+        <el-progress :percentage="imageUploadProgress" :format="format" color="#409eff"></el-progress>
       </div>
     </div>
   </div>
@@ -145,7 +111,7 @@ export default {
           netWeightAvg: "Net Weight Avg",
           casesSample: "Cases Sample",
           sampleWeight: "Sample Weight",
-          samplesNumber: "Sample Number",
+          samplesNumber: "Samples Number",
           piecesWeight: "20 Pieces Weight",
           sampleSize: "Sample Size",
           grower: "Grower",
@@ -163,8 +129,7 @@ export default {
           foreignBody: "Foreign Body",
           contamination: "Contamination",
           size: "Size",
-          consistency: "Consistency",
-          bloom: "Bloom",
+          // bloom: "Bloom",
           rsnbasfr: "RS NB AS FR",
           misshapen: "Misshapen",
           noStem: "No Stem",
@@ -172,17 +137,18 @@ export default {
           underSize: "Undersize",
           lackOfColor: "Lack of Color",
           decay: "Decay",
-          decayIncidence: "Decay Incidence",
+          // decayIncidence: "Decay Incidence",
           mold: "Mold",
-          moldIncidence: "Mold Incidence",
-          moldType: "Mold Type",
+          // moldIncidence: "Mold Incidence",
+          // moldType: "Mold Type",
           soft: "Soft",
           sensitive: "Sensitive",
           shriveling: "Shriveling",
-          pedicelarSunken: "Pedicelar Sunken",
+          scars: "Scars",
+          // pedicelarSunken: "Pedicelar Sunken",
           vswscr: "BS WS CR",
           so2Damage: "SO2 Damage",
-          insectPresence: "Insect Presence",
+          // insectPresence: "Insect Presence",
           sumOfQualityDefects: "Sum of Quality Defects",
           sumOfConditionDefects: "Sum of Condition Defects",
           sumOfTotalDefects: "Sum of Total Defects",
@@ -257,12 +223,14 @@ export default {
         let reader = new FileReader();
         reader.readAsBinaryString(file);
         let total = file.size;
-        reader.onprogress = function(e) {
+        reader.onprogress = function (e) {
           that.progress = (e.loaded / total) * 100 + "%";
         };
         reader.onload = (evt) => {
           let data = evt.target.result; // 读到的数据
+
           let workbook = XLSX.read(data, { type: "binary", cellDates: true });
+
           this.conversionData(workbook, file);
           resolve(workbook);
         };
@@ -272,6 +240,9 @@ export default {
     // 读取xlxs的数据保存到数据库
     conversionData(data, file) {
       let XLSXData = XLSX.utils.sheet_to_json(data.Sheets[data.SheetNames[0]]);
+      console.log(XLSXData);
+      console.log(this.uploadType.palletData);
+      debugger
       // 集装箱数据
       let lotData = {};
       // 托盘数据
@@ -297,7 +268,9 @@ export default {
       // 托盘数据
       for (let i = 0; i < XLSXData.length; i++) {
         uploadData[i] = {};
+
         for (let key in this.uploadType.palletData) {
+
           uploadData[i][key] = XLSXData[i][this.uploadType.palletData[key]];
           if (key === "packingDate") {
             console.log(uploadData[i][key]);
@@ -311,7 +284,8 @@ export default {
         }
       }
       // 上传集装箱数据
-
+      console.log(uploadData);
+      debugger;
       this.axios
         .post(`${process.env.VUE_APP_URL}/api/container`, lotData, {
           headers: {
@@ -635,9 +609,8 @@ export default {
     format(percentage) {
       return this.imgList.length - this.neenLoad <= 0
         ? `图片压缩中： ${this.conversionImgList.length}/${this.neenLoad}`
-        : `图片上传中： ${this.imgList.length - this.neenLoad}/${
-            this.imgList.length
-          }`;
+        : `图片上传中： ${this.imgList.length - this.neenLoad}/${this.imgList.length
+        }`;
     },
     axiosPdf(file) {
       let that = this;
@@ -656,7 +629,7 @@ export default {
               Authorization: window.sessionStorage.getItem("token"),
               "Content-Type": "multipart/form-data",
             },
-            onUploadProgress: function(progressEvent) {
+            onUploadProgress: function (progressEvent) {
               const complete = parseInt(
                 ((progressEvent.loaded / progressEvent.total) * 100) | 0
               );
@@ -706,9 +679,11 @@ export default {
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
+
   .el-upload__tip {
     font-family: Poppins-Regular;
   }
+
   .uploadExecBox {
     width: 100%;
     background-color: #fff;
@@ -720,6 +695,7 @@ export default {
     background-position: left center, right, center;
     background-size: contain, contain;
     background-repeat: no-repeat, no-repeat;
+
     .uploadHeader {
       height: 35px;
       width: 100%;
@@ -734,8 +710,10 @@ export default {
       position: relative;
       font-family: Poppins-Bold;
     }
+
     .uploadExec {
       padding: 18px 23px 40px;
+
       .show {
         margin-top: 10px;
         color: #606266;
@@ -748,14 +726,17 @@ export default {
         white-space: nowrap;
         font-size: 12px;
       }
+
       span {
         font-family: Poppins-Regular;
       }
     }
+
     .fileInput {
       position: absolute;
       left: -100%;
     }
+
     .progress {
       width: 0%;
       height: 2px;
@@ -764,6 +745,7 @@ export default {
       transition: all 0.5s;
     }
   }
+
   .uploadImagesBox {
     width: 100%;
     background-color: #fff;
@@ -774,6 +756,7 @@ export default {
     background-position: left center, right, center;
     background-size: contain, contain;
     background-repeat: no-repeat, no-repeat;
+
     .uploadHeader {
       height: 35px;
       width: 100%;
@@ -788,8 +771,10 @@ export default {
       position: relative;
       font-family: Poppins-Bold;
     }
+
     .uploadImages {
       padding: 18px 23px 40px;
+
       .el-form-item__label,
       input,
       .el-upload__text,
@@ -798,6 +783,7 @@ export default {
       }
     }
   }
+
   .progressImage {
     width: 100%;
     height: 100%;
@@ -806,6 +792,7 @@ export default {
     left: 0;
     top: 0;
     z-index: 999;
+
     .progressBox {
       width: 80%;
       position: absolute;
@@ -814,11 +801,13 @@ export default {
       transform: translate(-50%, -50%);
       font-size: 12px;
     }
+
     .el-progress__text {
       color: #fff;
     }
   }
 }
+
 .el-progress-bar {
   width: calc(100% - 120px);
 }

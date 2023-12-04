@@ -39,8 +39,10 @@ export default {
   data() {
     return {
       newsData: {},
+      lang:localStorage.getItem("lang") || "zh"
     };
   },
+
   created() {
     this.newsData = this.form;
     // 获取时间

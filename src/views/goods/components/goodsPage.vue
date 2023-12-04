@@ -1,3 +1,5 @@
+<!-- 商品预览页 GoodsPage -->
+
 <template>
   <div class="newsPage">
     <div class="newsBgc"></div>
@@ -30,9 +32,9 @@
         </template>
 
         <div>
-          <p>所属公司：{{ news.belongCompany }}</p>
-          <p> 月销量：{{ news.monthlySales }} </p>
-          <p>物流方式：{{ news.logisticsMethod }}</p>
+          <p>{{$t('goods.belongCompany')}}：{{ news.belongCompany }}</p>
+          <p> {{$t('goods.monthlySales')}}：{{ news.monthlySales }} </p>
+          <p>{{$t('goods.transportation')}}：{{ news.logisticsMethod }}</p>
         </div>
 
       </div>
@@ -40,11 +42,11 @@
       <div class="selectOther">
         <div class="preCircle" v-if="neighborsData.nextOne.title !== ''"
           @click="goNews(neighborsData.nextOne.farmToolsId)">
-          上一篇 <span>{{ neighborsData.nextOne.title }}</span>
+          {{$t('home.previous')}}: <span>{{ neighborsData.nextOne.title }}</span>
         </div>
         <div class="nextCircle" v-if="neighborsData.lastOne.title !== ''"
           @click="goNews(neighborsData.lastOne.farmToolsId)">
-          下一篇 <span>{{ neighborsData.lastOne.title }}</span>
+          {{$t('home.next')}}: <span>{{ neighborsData.lastOne.title }}</span>
         </div>
       </div>
     </div>
@@ -58,6 +60,7 @@ export default {
     return {
       token: window.sessionStorage.getItem('token'),
       news: {},
+      lang:localStorage.getItem("lang") || "zh",
       neighborsData: {
         nextOne: {
           title: "",
@@ -67,6 +70,12 @@ export default {
       },
     };
   },
+  mounted() {
+    this.$eventBus.$on("changeLanguage", (lang) => {
+      this.lang = lang;
+      this.getNews();
+    });
+  },
   created() {
     this.getNews();
   },
@@ -74,7 +83,7 @@ export default {
     getNews() {
       let farmToolsId = this.$route.query.farmToolsId;
       this.axios
-        .get(` ${process.env.VUE_APP_URL}/api/farmTools/${farmToolsId}`)
+        .get(` ${process.env.VUE_APP_URL}/api/farmTools/${farmToolsId}?lang=${this.lang === 'en' ? '1' : '0'}`)
         .then((res) => {
           this.news = res.data.data[0];
           this.news.createdAt = moment(this.news.createdAt).format(

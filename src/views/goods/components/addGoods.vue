@@ -16,13 +16,21 @@
         </el-form-item>
         <el-form-item :label="$t('goods.title')">
           <el-input v-model="form.title" :placeholder="$t('goods.placeholderTitle')" class="articleTitle"></el-input>
+          <el-input v-model="form.translations[0].title" class="articleTitle"
+            :placeholder="$t('goods.placeholderTraTips')" style="margin-left: 10px;">
+
+          </el-input>
         </el-form-item>
         <el-form-item :label="$t('goods.summary')">
           <el-input v-model="form.summary" :placeholder="$t('goods.placeholderSummary')" class="articleTitle"></el-input>
+          <el-input v-model="form.translations[0].summary" class="articleTitle"
+            :placeholder="$t('goods.placeholderTraTips')" style="margin-left: 10px;" />
         </el-form-item>
         <el-form-item :label="$t('goods.belongCompany')">
           <el-input v-model="form.belongCompany" :placeholder="$t('goods.placeholderBelongCompany')"
             class="articleTitle"></el-input>
+          <el-input v-model="form.translations[0].belongCompany" class="articleTitle"
+            :placeholder="$t('goods.placeholderTraTips')" style="margin-left: 10px;" />
         </el-form-item>
         <el-form-item :label="$t('goods.price')">
           <el-input v-model="form.price" :placeholder="$t('goods.placeholderPrice')" class="articleTitle"
@@ -41,6 +49,8 @@
         <template v-for="(item, index) in form.article">
           <el-form-item :label="$t('news.paragraph')" :key="index" v-if="item.type === 'text'">
             <el-input type="textarea" v-model="form.article[index].content" class="articleContent"></el-input>
+            <el-input type="textarea" v-model="form.translations[0].introduction[index].content" class="articleContent"
+              style="margin-top: 10px;" :placeholder="$t('goods.placeholderTraTips')"></el-input>
             <el-button type="danger" icon="el-icon-delete" circle class="deleteButton"
               @click="deletAddNews(index)"></el-button>
           </el-form-item>
@@ -109,6 +119,15 @@ export default {
           //   },
         ],
         content: [],
+        translations: [
+          {
+            title: "",
+            author: "",
+            summary: "",
+            introduction: [],
+            lang: 1
+          }
+        ],//Fanyi
       },
       restaurants: [],
       timeout: null,
@@ -165,6 +184,7 @@ export default {
     },
     // 添加新一段
     addNewsTexture() {
+      console.log(this.form);
       this.form.article.push({
         type: "text",
         content: "",
@@ -173,6 +193,10 @@ export default {
         type: "text",
         content: "",
       });
+      this.form.translations[0].introduction.push({
+        content: "",
+        type: "text"
+      })  
       this.fileList.push(false);
     },
     // 新加新图片
@@ -185,12 +209,17 @@ export default {
         type: "image",
         imageName: "",
       });
+      this.form.translations[0].introduction.push({
+        type: "image",
+        imageName: "",
+      }) 
       this.fileList.push({ file: null });
     },
     // 删除新增片段
     deletAddNews(index) {
       this.form.article.splice(index, 1);
       this.form.content.splice(index, 1);
+      this.form.translations[0].content.splice(index, 1)
       this.fileList.splice(index, 1);
     },
     // 新闻预览
@@ -220,6 +249,7 @@ export default {
       reader.readAsDataURL(params.file);
       reader.onload = function (e) {
         that.form.cover = reader.result;
+       
       };
       if (this.coverFile === null) {
         this.uploadImgNum++;
@@ -232,6 +262,7 @@ export default {
       reader.readAsDataURL(params.file);
       reader.onload = function (e) {
         that.form.article[index].imageName = reader.result;
+        that.form.translations[0].introduction[index].imageName = reader.result;
       };
       if (this.fileList[index].file === null) {
         this.uploadImgNum++;
@@ -287,17 +318,27 @@ export default {
               //
               index++;
               this.form.article[i].imageName = res.data.data;
+              this.form.translations[0].introduction[i].imageName = res.data.data;
               this.checkUploadDown(index);
             });
         }
       }
     },
     uploadNewsObj() {
+      if (this.form.category === '' || !this.form.category) {
+        return this.$message({
+          showClose: true,
+          message: "请填入商品类型(Please enter the news type)!",
+          type: "warning",
+        });
+      }
+      this.form.translations[0].introduction = JSON.stringify(this.form.translations[0].introduction)
       this.axios
         .post(
           `${process.env.VUE_APP_URL}/api/farmTools`,
           Object.assign({}, this.form, {
             introduction: JSON.stringify(this.form.article),
+            translations:this.form.translations
           }),
           {
             headers: {
@@ -313,7 +354,7 @@ export default {
             type: "success",
           });
 
-          if(res.data.status === 200){
+          if (res.data.status === 200) {
             this.clearNews()
           }
         });
@@ -334,6 +375,13 @@ export default {
         cover: "",
         article: [],
         content: [],
+        translations: [{
+          title: "",
+          author: "",
+          summary: "",
+          introduction: [],
+          lang: 1
+        }],
       };
     },
   },

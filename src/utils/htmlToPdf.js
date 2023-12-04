@@ -3,10 +3,12 @@ import moment from "moment";
 
 export default {
   install(Vue, options) {
-    Vue.prototype.ExportSavePdf = function(pdfData, currentTime) {
+    Vue.prototype.ExportSavePdf = function (pdfData, currentTime) {
+
       let detail = pdfData.detail;
       let avg = pdfData.avg;
       let allData = pdfData.allData;
+      console.log(allData);
       let imgList = pdfData.imgList;
       let defectsSummary = pdfData.defectsSummary;
       var pdf = new JSPDF("a4"); // A4大小，210mm x 297mm，四边各保留10mm的边距，显示区域190x277
@@ -193,8 +195,8 @@ export default {
 
       pdf.text(
         uploadData +
-          "\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0" +
-          nowDay,
+        "\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0" +
+        nowDay,
         105,
         280,
         null,
@@ -231,7 +233,7 @@ export default {
 
       let PalletsSummaryList = [];
       for (let i = 0; i < allData.length; i++) {
-       
+
         PalletsSummaryList[i] = {};
         PalletsSummaryList[i].title = "Pallet " + allData[i].pallet;
         if (parseInt(allData[i].sumOfTotalDefects) < 10) {
@@ -486,12 +488,6 @@ export default {
 
           pdf.text("Size", 25, 140, null, null, "right");
 
-          pdf.text("Consistency", 25, 142, null, null, "right");
-
-          pdf.text("Bloom", 25, 144, null, null, "right");
-
-          pdf.text("RS NB AS FR", 25, 146, null, null, "right");
-
           pdf.text("Misshapen", 25, 148, null, null, "right");
 
           pdf.text("Oversize", 25, 150, null, null, "right");
@@ -500,46 +496,64 @@ export default {
 
           pdf.text("Lack of Color", 25, 154, null, null, "right");
 
+          pdf.text("Scars",25 , 156, null, null, "right");
+
           // 一列
           // 填充背景
           pdf.setFontSize(8);
           pdf.setTextColor("white");
           pdf.setFillColor("#891735");
-          pdf.rect(10, 156, 190, 6, "F");
+          pdf.rect(10, 158, 190, 6, "F");
 
           //
           pdf.setFontSize(6);
           pdf.setTextColor("black");
           pdf.text("Decay", 25, 166, null, null, "right");
 
-          pdf.text("Decay Incidence", 25, 168, null, null, "right");
+          pdf.text("Mold", 25, 168, null, null, "right");
 
-          pdf.text("Mold", 25, 170, null, null, "right");
+          // pdf.text("Mold Incidence", 25, 172, null, null, "right");
 
-          pdf.text("Mold Incidence", 25, 172, null, null, "right");
+          // pdf.text("Mold Type", 25, 174, null, null, "right");
 
-          pdf.text("Mold Type", 25, 174, null, null, "right");
+          pdf.text("Soft", 25, 170, null, null, "right");
 
-          pdf.text("Soft", 25, 176, null, null, "right");
+          pdf.text("Sensitive", 25, 172, null, null, "right");
 
-          pdf.text("Sensitive", 25, 178, null, null, "right");
+          pdf.text("Shriveling", 25, 174, null, null, "right");
 
-          pdf.text("Shriveling", 25, 180, null, null, "right");
+          pdf.text("Dry Stem",25, 176, null, null, "right");
+          
+            pdf.text('No Stem', 25, 178, null, null, "right")
 
-          pdf.text("Pedicelar Sunken", 25, 182, null, null, "right");
+          pdf.text("Cracking", 25, 180, null, null, "right");
 
-          pdf.text("BS WS CR", 25, 184, null, null, "right");
+          pdf.text("Bruises", 25, 182, null, null, "right");
 
-          pdf.text("SO2 Damage", 25, 186, null, null, "right");
+          pdf.text("Freezing Damage", 25, 184, null, null, "right");
 
-          pdf.text("Insect Presence", 25, 188, null, null, "right");
+          pdf.text("Pitting", 25, 186, null, null, "right");
+
+          pdf.text("Russet", 25, 188, null, null, "right");
+
+          pdf.text("Flavor Changed", 25, 190, null, null, "right");
+
+
+
+
+          // pdf.text("BS WS CR", 25, 184, null, null, "right");
+          if (allData[i].so2Damage !== '0.00%') {
+            pdf.text("SO2 Damage", 25, 192, null, null, "right");
+          }
+
+          // pdf.text("Insect Presence", 25, 188, null, null, "right");
 
           // 一列
           // 填充背景
           pdf.setFontSize(8);
           pdf.setTextColor("white");
           pdf.setFillColor("#891735");
-          pdf.rect(10, 190, 190, 6, "F");
+          pdf.rect(10, 192, 190, 6, "F");
 
           //
           pdf.setFontSize(6);
@@ -572,8 +586,8 @@ export default {
             pdf.text("General", rowPosition[j], 74, null, null, "center");
             pdf.text("Other", rowPosition[j], 108, null, null, "center");
             pdf.text("Quality", rowPosition[j], 130, null, null, "center");
-            pdf.text("Condition", rowPosition[j], 160, null, null, "center");
-            pdf.text("Totals", rowPosition[j], 194, null, null, "center");
+            pdf.text("Condition", rowPosition[j], 162, null, null, "center");
+            pdf.text("Totals", rowPosition[j], 196, null, null, "center");
             // 添加数据
             pdf.setFontSize(6);
             pdf.setTextColor("black");
@@ -778,30 +792,16 @@ export default {
               null,
               "center"
             );
-            pdf.text(
-              allData[i + j].consistency + "",
-              rowPosition[j],
-              142,
-              null,
-              null,
-              "center"
-            );
-            pdf.text(
-              allData[i + j].bloom + "",
-              rowPosition[j],
-              144,
-              null,
-              null,
-              "center"
-            );
-            pdf.text(
-              allData[i + j].rsnbasfr + "",
-              rowPosition[j],
-              146,
-              null,
-              null,
-              "center"
-            );
+    
+            // pdf.text(
+            //   allData[i + j].bloom + "",
+            //   rowPosition[j],
+            //   144,
+            //   null,
+            //   null,
+            //   "center"
+            // );
+
             pdf.text(
               allData[i + j].misshapen + "",
               rowPosition[j],
@@ -835,6 +835,14 @@ export default {
               "center"
             );
             pdf.text(
+              allData[i + j].scars + "",
+              rowPosition[j],
+              156,
+              null,
+              null,
+              "center"
+            );
+            pdf.text(
               allData[i + j].decay + "",
               rowPosition[j],
               166,
@@ -842,8 +850,16 @@ export default {
               null,
               "center"
             );
+            // pdf.text(
+            //   allData[i + j].decayIncidence + "",
+            //   rowPosition[j],
+            //   168,
+            //   null,
+            //   null,
+            //   "center"
+            // );
             pdf.text(
-              allData[i + j].decayIncidence + "",
+              allData[i + j].mold + "",
               rowPosition[j],
               168,
               null,
@@ -851,7 +867,7 @@ export default {
               "center"
             );
             pdf.text(
-              allData[i + j].mold + "",
+              allData[i + j].soft + "",
               rowPosition[j],
               170,
               null,
@@ -859,33 +875,9 @@ export default {
               "center"
             );
             pdf.text(
-              allData[i + j].moldIncidence + "",
-              rowPosition[j],
-              172,
-              null,
-              null,
-              "center"
-            );
-            pdf.text(
-              allData[i + j].moldType + "",
-              rowPosition[j],
-              174,
-              null,
-              null,
-              "center"
-            );
-            pdf.text(
-              allData[i + j].soft + "",
-              rowPosition[j],
-              176,
-              null,
-              null,
-              "center"
-            );
-            pdf.text(
               allData[i + j].sensitive + "",
               rowPosition[j],
-              178,
+              172,
               null,
               null,
               "center"
@@ -894,13 +886,38 @@ export default {
             pdf.text(
               allData[i + j].shriveling + "",
               rowPosition[j],
-              180,
+              174,
+              null,
+              null,
+              "center"
+            );
+            
+            pdf.text(
+              allData[i + j].dryStem + "",
+              rowPosition[j],
+              176,
               null,
               null,
               "center"
             );
             pdf.text(
-              allData[i + j].pedicelarSunken + "",
+              allData[i + j].noStem + "",
+              rowPosition[j],
+              178,
+              null,
+              null,
+              "center"
+            );
+            pdf.text(
+              allData[i + j].cracking + "",
+              rowPosition[j],
+              180,
+              null,
+              null,
+              "center"
+            )
+            pdf.text(
+              allData[i + j].bruises + "",
               rowPosition[j],
               182,
               null,
@@ -908,7 +925,7 @@ export default {
               "center"
             );
             pdf.text(
-              allData[i + j].bswscr + "",
+              allData[i + j].freezingDamage + "",
               rowPosition[j],
               184,
               null,
@@ -916,7 +933,7 @@ export default {
               "center"
             );
             pdf.text(
-              allData[i + j].so2Damage + "",
+              allData[i + j].pitting + "",
               rowPosition[j],
               186,
               null,
@@ -924,13 +941,36 @@ export default {
               "center"
             );
             pdf.text(
-              allData[i + j].insectPresence + "",
+              allData[i + j].russet + "",
               rowPosition[j],
               188,
               null,
               null,
               "center"
             );
+            pdf.text(
+              allData[i + j].flavorChanged + "",
+              rowPosition[j],
+              190,
+              null,
+              null,
+              "center"
+            );
+
+
+
+
+            if (allData[i + j].so2Damage !== '0.00%') {
+              pdf.text(
+                allData[i + j].so2Damage + "",
+                rowPosition[j],
+                192,
+                null,
+                null,
+                "center"
+              );
+            }
+
             pdf.text(
               allData[i + j].sumOfQualityDefects + "",
               rowPosition[j],
@@ -962,7 +1002,7 @@ export default {
       // 详情数据页面 （竖）
 
       pdf.addPage([850, 450], "1");
-      var generateData = function(amount) {
+      var generateData = function (amount) {
         var result = [];
         for (var i = 0; i < amount; i += 1) {
           var data = {
@@ -988,33 +1028,90 @@ export default {
             "Foreign Body": allData[i].foreignBody + "",
             Contamination: allData[i].contamination + "",
             Size: allData[i].size + "",
-            Consistency: allData[i].consistency + "",
-            Bloom: allData[i].bloom + "",
-            "RS NB AS FR": allData[i].rsnbasfr + "",
+            // Bloom: allData[i].bloom + "",
+            // "RS NB AS FR": allData[i].rsnbasfr + "",
             Misshapen: allData[i].misshapen + "",
             Undersize: allData[i].underSize + "",
             Decay: allData[i].decay + "",
-            "Decay Incidence": allData[i].decayIncidence + "",
+            // "Decay Incidence": allData[i].decayIncidence + "",
             Mold: allData[i].mold + "",
-            "Mold Incidence": allData[i].moldIncidence + "",
-            "Mold Type": allData[i].moldType + "",
+            // "Mold Incidence": allData[i].moldIncidence + "",
+            // "Mold Type": allData[i].moldType + "",
             Soft: allData[i].soft + "",
             Sensitive: allData[i].sensitive + "",
             Shriveling: allData[i].shriveling + "",
-            "Pedicelar Sunken": allData[i].pedicelarSunken + "",
-            "BS WS CR": allData[i].bswscr + "",
-            "SO2 Damage": allData[i].so2Damage + "",
-            "Insect Presence": allData[i].insectPresence + "",
+            "Dry Stem": allData[i].dryStem + "",
+            "No Stem": allData[i].noStem + "",
+            "Cracking": allData[i].cracking + "",
+            "Bruises": allData[i].bruises + "",
+            "Freezing Damage": allData[i].freezingDamage + "",
+            "Pitting": allData[i].pitting + "",
+            "Russet": allData[i].russet + "",
+            "Flavor Changed": allData[i].flavorChanged + "",
+            Scars: allData[i].scars + "",
+            // "Pedicelar Sunken": allData[i].pedicelarSunken + "",
+            // "BS WS CR": allData[i].bswscr + "",
+            // "SO2 Damage": allData[i].so2Damage + "",
+            // "Insect Presence": allData[i].insectPresence + "",
             "Sum of Quality Defects": allData[i].sumOfQualityDefects + "",
             "Sum of Condition Defects": allData[i].sumOfConditionDefects + "",
             "Sum of Total Defects": allData[i].sumOfTotalDefects + "",
           };
+          if (allData[i].so2Damage != "0.00%") {
+            data["SO2 Damage"] = allData[i].so2Damage + "";
+          }
+
+
           result.push(Object.assign({}, data));
         }
 
         return result;
       };
-
+      // 定义动态表头
+      const autoHeader = {
+        "pallet": "pallet",
+        "Pallet Score": 'palletScore',
+        "Sample Score": 'sampleScore',
+        "Final Score": "finalScore",
+        "Main Defect": "mainDefect",
+        "Net Weight Avg": "netWeightAvg",
+        "Cases Sample": "casesSample",
+        "Sample Weight": "sampleWeight",
+        "Samples Number": "samplesNumber",
+        "20 Pieces Weight": "piecesWeight",
+        "Sample Size": "sampleSize",
+        "Grower": "grower",
+        "Block": "block",
+        "Variety": "variety",
+        "Packing Date": "packingDate",
+        "Lote": "lote",
+        "Label": "label",
+        "Brix": "brix",
+        "Baxlo Avg": "baxloAvg",
+        "Foreign Body": "foreignBody",
+        "Contamination": "contamination",
+        "Size": "size",
+        // "Bloom": "bloom",
+        "RS NB AS FR": "rsnbasfr",
+        "Misshapen": "misshapen",
+        "Undersize": "underSize",
+        "Decay": "decay",
+        // "Decay Incidence": "decayIncidence",
+        "Mold": "mold",
+        // "Mold Incidence": "moldIncidence",
+        // "Mold Type": "moldType",
+        "Soft": "soft",
+        "Sensitive": "sensitive",
+        "Shriveling": "shriveling",
+        "Scars": "scars",
+        // "Pedicelar Sunken": "pedicelarSunken",
+        "BS WS CR": "bswscr",
+        "SO2 Damage": "so2Damage",
+        // "Insect Presence": "insectPresence",
+        "Sum of Quality Defects": "sumOfQualityDefects",
+        "Sum of Condition Defects": "sumOfConditionDefects",
+        "Sum of Total Defects": "sumOfTotalDefects",
+      }
       function createHeaders(keys) {
         var result = [];
         for (var i = 0; i < keys.length; i += 1) {
@@ -1029,51 +1126,113 @@ export default {
         }
         return result;
       }
+      if (allData.every(x => x.so2Damage == "0.00%")) {
+        var headers = createHeaders([
+          "pallet",
+          "Pallet Score",
+          "Sample Score",
+          "Final Score",
+          "Main Defect",
+          "Net Weight Avg",
+          "Cases Sample",
+          "Sample Weight",
+          "Samples Number",
+          "20 Pieces Weight",
+          "Sample Size",
+          "Grower",
+          "Block",
+          "Variety",
+          "Packing Date",
+          "Lote",
+          "Label",
+          "Brix",
+          "Baxlo Avg",
+          "Foreign Body",
+          "Contamination",
+          "Size",
+          // "Bloom",
+          // "RS NB AS FR",
+          "Misshapen",
+          "Undersize",
+          "Decay",
+          // "Decay Incidence",
+          "Mold",
+          // "Mold Incidence",
+          // "Mold Type",
+          "Soft",
+          "Sensitive",
+          "Shriveling",
+          "Dry Stem",
+          "No Stem",
+          "Scars",
+          "Cracking",
+          "Bruises",
+          "Freezing Damage",
+          "Pitting",
+          "Russet",
+          "Flavor Changed",
+          // "Pedicelar Sunken",
+          // "BS WS CR",
+          // "Insect Presence",
+          "Sum of Quality Defects",
+          "Sum of Condition Defects",
+          "Sum of Total Defects",
+        ]);
+      } else {
+        var headers = createHeaders([
+          "pallet",
+          "Pallet Score",
+          "Sample Score",
+          "Final Score",
+          "Main Defect",
+          "Net Weight Avg",
+          "Cases Sample",
+          "Sample Weight",
+          "Samples Number",
+          "20 Pieces Weight",
+          "Sample Size",
+          "Grower",
+          "Block",
+          "Variety",
+          "Packing Date",
+          "Lote",
+          "Label",
+          "Brix",
+          "Baxlo Avg",
+          "Foreign Body",
+          "Contamination",
+          "Size",
+          // "Bloom",
+          // "RS NB AS FR",
+          "Misshapen",
+          "Undersize",
+          "Decay",
+          // "Decay Incidence",
+          "Mold",
+          // "Mold Incidence",
+          // "Mold Type",
+          "Soft",
+          "Sensitive",
+          "Shriveling",
+          "Dry Stem",
+          "No Stem",
+          "Scars",
+          "Cracking",
+          "Bruises",
+          "Freezing Damage",
+          "Pitting",
+          "Russet",
+          "Flavor Changed",
+          "SO2 Damage",
+          // "Insect Presence",
+          "Sum of Quality Defects",
+          "Sum of Condition Defects",
+          "Sum of Total Defects",
+        ]);
+      }
 
-      var headers = createHeaders([
-        "pallet",
-        "Pallet Score",
-        "Sample Score",
-        "Final Score",
-        "Main Defect",
-        "Net Weight Avg",
-        "Cases Sample",
-        "Sample Weight",
-        "Samples Number",
-        "20 Pieces Weight",
-        "Sample Size",
-        "Grower",
-        "Block",
-        "Variety",
-        "Packing Date",
-        "Lote",
-        "Label",
-        "Brix",
-        "Baxlo Avg",
-        "Foreign Body",
-        "Contamination",
-        "Size",
-        "Consistency",
-        "Bloom",
-        "RS NB AS FR",
-        "Misshapen",
-        "Undersize",
-        "Decay",
-        "Decay Incidence",
-        "Mold",
-        "Mold Incidence",
-        "Mold Type",
-        "Soft",
-        "Sensitive",
-        "Shriveling",
-        "Pedicelar Sunken",
-        "BS WS CR",
-        "SO2 Damage",
-        "Insect Presence",
-        "Sum of Quality Defects",
-        "Sum of Condition Defects",
-        "Sum of Total Defects",
-      ]);
+
+
 
       pdf.table(10, 10, generateData(allData.length), headers, {
         autoSize: true,
@@ -1117,7 +1276,7 @@ export default {
           let img = new Image();
           img.src = img_url;
 
-          img.onload = function() {
+          img.onload = function () {
             let imgWidth = img.width;
             let imgHeight = img.height;
             if (imgWidth >= imgHeight && imgWidth > 61) {

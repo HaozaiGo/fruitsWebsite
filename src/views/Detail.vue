@@ -488,15 +488,7 @@
                   v-if="showList.size"
                 >
                 </el-table-column>
-                <el-table-column
-                  prop="consistency"
-                  :label="$t('detail.Consistency')"
-                  sortable
-                  width="130"
-                  align="center"
-                  v-if="showList.consistency"
-                >
-                </el-table-column>
+           
                 <el-table-column
                   prop="bloom"
                   :label="$t('detail.Bloom')"
@@ -1000,9 +992,6 @@
                         Size：<span>{{ item.size }}</span>
                       </li>
                       <li>
-                        Consistency：<span>{{ item.consistency }}</span>
-                      </li>
-                      <li>
                         Bloom：<span>{{ item.bloom }}</span>
                       </li>
                     </ul>
@@ -1063,7 +1052,7 @@
                         BS WS CR：<span>{{ item.bswscr }}</span>
                       </li>
                     </ul>
-                    <ul>
+                    <ul v-if="item.so2Damage != 0">
                       <li>
                         SO2 Damage：<span>{{ item.so2Damage }}</span>
                       </li>

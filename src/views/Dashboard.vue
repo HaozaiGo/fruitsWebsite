@@ -1,10 +1,7 @@
 <template>
-  <div
-    class="dashboard"
-    :style="{
-      width: $store.state.showMenu === true ? '100%' : 'calc(100% - 181px)',
-    }"
-  >
+  <div class="dashboard" :style="{
+    width: $store.state.showMenu === true ? '100%' : 'calc(100% - 181px)',
+  }">
     <iframe :src="iframeUrl" frameborder="0" ref="iframes" id="iFrame"></iframe>
   </div>
 </template>
@@ -15,6 +12,7 @@ export default {
     return {
       iframeUrl: "",
       tableList: [
+        { table: "PowerBi", iframeUrl: "https://app.powerbi.com/reportEmbed?reportId=fc0d93c9-b654-4d6a-b044-b97b7cb0d874&autoAuth=true&ctid=ba749e9d-562f-44cf-9c08-ff614d3f8e23" },
         {
           table: "CherryWorld",
           iframeUrl:
@@ -104,9 +102,11 @@ export default {
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
+
   &::-webkit-scrollbar {
     display: none;
   }
+
   iframe {
     width: 100%;
     height: 100%;
