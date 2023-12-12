@@ -1,7 +1,10 @@
 <template>
+
+
   <div class="dashboard" :style="{
     width: $store.state.showMenu === true ? '100%' : 'calc(100% - 181px)',
   }">
+    <el-button style="position: fixed;right: 30px;">退出登陆</el-button>
     <iframe :src="iframeUrl" frameborder="0" ref="iframes" id="iFrame"></iframe>
   </div>
 </template>
@@ -13,6 +16,8 @@ export default {
       iframeUrl: "",
       tableList: [
         { table: "PowerBi", iframeUrl: "https://app.powerbi.com/reportEmbed?reportId=fc0d93c9-b654-4d6a-b044-b97b7cb0d874&autoAuth=true&ctid=ba749e9d-562f-44cf-9c08-ff614d3f8e23" },
+        { table: "PowerBi1", iframeUrl: "https://app.powerbi.com/reportEmbed?reportId=70c2c1f2-f2d8-466c-8531-07dda06a624a&autoAuth=true&ctid=ba749e9d-562f-44cf-9c08-ff614d3f8e23" },
+
         {
           table: "CherryWorld",
           iframeUrl:

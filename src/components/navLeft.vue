@@ -79,9 +79,32 @@ export default {
           children: [
             {
               imgSrc: require("../assets/navLeft/table.png"),
-              name: "Power Bi",
+              name: "COST STRUCTURE",
               admin: "all",
               params: "PowerBi",
+            },{
+              imgSrc: require("../assets/navLeft/table.png"),
+              name: "SALES",
+              admin: "all",
+              params: "PowerBi1",
+            },
+            {
+              imgSrc: require("../assets/navLeft/table.png"),
+              name: "MARKET TREND",
+              admin: "all",
+              params: "PowerBi2",
+            },
+            {
+              imgSrc: require("../assets/navLeft/table.png"),
+              name: "FINANCIAL STATEMENTS",
+              admin: "all",
+              params: "PowerBi3",
+            },
+            {
+              imgSrc: require("../assets/navLeft/table.png"),
+              name: "ESTIMATE/FINAL",
+              admin: "all",
+              params: "PowerBi4",
             },
             // {
             //   imgSrc: require("../assets/navLeft/table.png"),
